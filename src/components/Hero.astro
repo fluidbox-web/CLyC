@@ -1,0 +1,90 @@
+---
+import heroDark from '../assets/hero/hero2.png';
+import heroLight from '../assets/hero/hero3.png';
+---
+
+<section
+  id="inicio"
+  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-950">
+
+  <div class="absolute inset-0 pointer-events-none">
+    <img
+      src={heroLight.src}
+      alt=""
+      class="w-full h-full object-cover opacity-80 block dark:hidden"
+    />
+    <img
+      src={heroDark.src}
+      alt=""
+      class="w-full h-full object-cover opacity-70 hidden dark:block"
+    />
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+    <div id="hero-content" class="space-y-8">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 dark:text-slate-100 leading-tight opacity-0 translate-y-12 drop-shadow-lg">
+        Defendemos tus derechos,<br />
+        <span class="text-gradient">construimos justicia.</span>
+      </h1>
+
+      <p class="text-slate-500 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-0 translate-y-8 leading-relaxed">
+        Confianza que transforma, justicia que trasciende.
+        Asistencia legal profesional en la Riviera Maya.
+      </p>
+
+      <div class="opacity-0 translate-y-8 pt-4">
+        <a href="#contacto" class="btn-primary text-lg group inline-flex items-center gap-2">
+          Agenda una cita
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform duration-300">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-0 w-full overflow-hidden z-10 py-4">
+    <div class="animate-marquee flex whitespace-nowrap">
+      <span class="text-slate-800 dark:text-slate-200 text-sm sm:text-base tracking-wider shrink-0">
+        Asuntos Familiares &nbsp;•&nbsp; Penales y Civiles &nbsp;•&nbsp; Amparos y Mercantil &nbsp;•&nbsp; Remates Inmobiliarios &nbsp;•&nbsp; Trámites Migratorios y Pasaportes &nbsp;•&nbsp; Procedimientos en CONDUSEF y PROFECO &nbsp;•&nbsp; Asistencia a Empresas y Condominios &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+      </span>
+      <span class="text-slate-800 dark:text-slate-200 text-sm sm:text-base tracking-wider shrink-0">
+        Asuntos Familiares &nbsp;•&nbsp; Penales y Civiles &nbsp;•&nbsp; Amparos y Mercantil &nbsp;•&nbsp; Remates Inmobiliarios &nbsp;•&nbsp; Trámites Migratorios y Pasaportes &nbsp;•&nbsp; Procedimientos en CONDUSEF y PROFECO &nbsp;•&nbsp; Asistencia a Empresas y Condominios &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
+
+  tl.to('#hero-content h1', { opacity: 1, y: 0, duration: 1 })
+    .to('#hero-content p', { opacity: 1, y: 0 }, '-=0.6')
+    .to('#hero-content > div:last-child', { opacity: 1, y: 0 }, '-=0.6');
+
+  gsap.to('#inicio', {
+    scrollTrigger: {
+      trigger: '#inicio',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 0.5,
+    },
+    '--blur': '0px',
+    opacity: 1,
+  });
+</script>

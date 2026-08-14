@@ -1,0 +1,420 @@
+---
+const categorias = [
+  {
+    key: 'familiar',
+    etiqueta: 'Materia familiar',
+    descripcion: 'Asesoría sensible y estratégica para resolver conflictos familiares con acompañamiento claro en cada etapa.',
+    cifra: '08 servicios',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
+    servicios: [
+      'Divorcios',
+      'Guarda y custodia',
+      'Régimen de convivencia',
+      'Pensión alimenticia',
+      'Reconocimiento de paternidad',
+      'Pérdida de patria potestad',
+      'Juicio sucesorio testamentario e intestamentario',
+      'Consignación de pensión',
+    ],
+  },
+  {
+    key: 'civil',
+    etiqueta: 'Materia civil',
+    descripcion: 'Litigio y asesoría civil para proteger patrimonio, contratos y derechos reales con visión preventiva y de fondo.',
+    cifra: '07 servicios',
+    acento: 'from-slate-700 to-slate-500',
+    borde: 'border-slate-300/40',
+    fondo: 'bg-slate-500/8',
+    servicios: [
+      'Juicios de nulidad',
+      'Juicios reivindicatorios',
+      'Prescripción positiva',
+      'Cumplimiento de contratos',
+      'Acción proforma',
+      'Rescisión',
+      'Daños',
+    ],
+  },
+  {
+    key: 'civil-oral',
+    etiqueta: 'Materia civil oral',
+    descripcion: 'Procesos orales diseñados para responder con rapidez y precisión en asuntos de garantía, posesión y jurisdicción voluntaria.',
+    cifra: '03 servicios',
+    acento: 'from-emerald-500 to-teal-500',
+    borde: 'border-emerald-500/25',
+    fondo: 'bg-emerald-500/8',
+    servicios: [
+      'Juicio hipotecario',
+      'Juicio de desahucio',
+      'Jurisdicciones voluntarias',
+    ],
+  },
+  {
+    key: 'mercantil',
+    etiqueta: 'Materia mercantil',
+    descripcion: 'Cobranza, contratos y títulos de crédito con enfoque en recuperación efectiva y control del riesgo comercial.',
+    cifra: '05 servicios',
+    acento: 'from-amber-500 to-orange-500',
+    borde: 'border-amber-500/25',
+    fondo: 'bg-amber-500/8',
+    servicios: [
+      'Cumplimiento de contrato',
+      'Rescisión de contrato',
+      'Pago',
+      'Vencimiento anticipado de contrato',
+      'Ejecución de pagarés, títulos de crédito y otros',
+    ],
+  },
+  {
+    key: 'amparos',
+    etiqueta: 'Amparos',
+    descripcion: 'Defensa constitucional para proteger derechos frente a actos de autoridad, en vía indirecta o directa.',
+    cifra: '02 servicios',
+    acento: 'from-violet-500 to-fuchsia-500',
+    borde: 'border-violet-500/25',
+    fondo: 'bg-violet-500/8',
+    servicios: [
+      'Amparo indirecto',
+      'Amparo directo',
+    ],
+  },
+  {
+    key: 'migracion',
+    etiqueta: 'Migración',
+    descripcion: 'Gestión migratoria ordenada para resolver trámites, renovación documental y visados sin fricción.',
+    cifra: '05 servicios',
+    acento: 'from-indigo-500 to-sky-500',
+    borde: 'border-indigo-500/25',
+    fondo: 'bg-indigo-500/8',
+    servicios: [
+      'Obtención de constancia de empleador',
+      'Actualización de constancia de empleador',
+      'Visas por oferta de empleo o vínculo familiar',
+      'Canje de visa',
+      'Renovación de tarjeta migratoria',
+    ],
+  },
+  {
+    key: 'contratos',
+    etiqueta: 'Contratos',
+    descripcion: 'Redacción y revisión contractual para blindar operaciones patrimoniales, laborales y de prestación de servicios.',
+    cifra: '08 servicios',
+    acento: 'from-rose-500 to-orange-400',
+    borde: 'border-rose-500/25',
+    fondo: 'bg-rose-500/8',
+    servicios: [
+      'Compraventa',
+      'Cesión de derechos',
+      'Arrendamiento',
+      'Comodato',
+      'De obra',
+      'Laborales',
+      'Prestación de servicios',
+      'Otros contratos a medida',
+    ],
+  },
+  {
+    key: 'remates',
+    etiqueta: 'Remates bancarios',
+    descripcion: 'Acompañamiento para identificar, evaluar y adquirir oportunidades con respaldo legal y revisión previa de riesgos.',
+    cifra: '01 servicio',
+    acento: 'from-slate-900 to-cyan-700',
+    borde: 'border-slate-300/40',
+    fondo: 'bg-slate-600/8',
+    servicios: [
+      'Remates bancarios',
+    ],
+  },
+];
+
+const totalServicios = categorias.reduce((acumulado, categoria) => acumulado + categoria.servicios.length, 0);
+---
+
+<section id="servicios" class="relative overflow-hidden bg-slate-100 py-20 md:py-28 dark:bg-slate-950">
+  <div class="absolute inset-0 pointer-events-none opacity-[0.55] dark:opacity-[0.22]" style="background-image: radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.18) 1px, transparent 0); background-size: 28px 28px;"></div>
+  <div class="absolute -top-32 right-[-8rem] h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"></div>
+  <div class="absolute bottom-[-7rem] left-[-6rem] h-72 w-72 rounded-full bg-slate-500/8 blur-3xl dark:bg-slate-700/10"></div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700 shadow-sm backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-cyan-200" id="servicios-eyebrow">
+        Áreas de práctica
+      </div>
+
+      <h2 class="section-title mt-6 opacity-0 translate-y-8" id="servicios-title">
+        Servicios jurídicos por materia
+      </h2>
+
+      <p class="section-subtitle mt-5 opacity-0 translate-y-8" id="servicios-subtitle">
+        Áreas especializadas para identificar con claridad cada tipo de asunto y la atención legal que ofrecemos.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <div class="hidden lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8 lg:items-start">
+        <aside class="sticky top-24 rounded-3xl border border-slate-200/80 bg-white/85 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur dark:border-slate-800/60 dark:bg-slate-950/80">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-500">Materias</p>
+          <div class="mt-4 flex flex-col gap-2" id="categoria-nav">
+            {categorias.map((categoria, index) => (
+              <button
+                type="button"
+                class={`categoria-tab flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${index === 0 ? 'border-cyan-500 bg-cyan-500 text-white shadow-lg shadow-cyan-500/20' : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-400 dark:hover:border-cyan-500/30 dark:hover:bg-slate-900'}`}
+                data-target={categoria.key}
+                aria-controls={`panel-${categoria.key}`}
+                aria-selected={index === 0 ? 'true' : 'false'}>
+                <span class="text-sm font-semibold leading-tight">{categoria.etiqueta}</span>
+                <span class={`ml-3 rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide ${index === 0 ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-600 dark:bg-slate-800/90 dark:text-slate-400'}`}>
+                  {categoria.servicios.length}
+                </span>
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        <div id="categoria-panels">
+          {categorias.map((categoria, index) => (
+            <article
+              id={`panel-${categoria.key}`}
+              data-panel={categoria.key}
+              class={`categoria-panel rounded-[2rem] border bg-white/90 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur transition-all duration-500 dark:bg-slate-950/85 ${categoria.borde} ${index === 0 ? 'block' : 'hidden'}`}
+              aria-labelledby={`tab-${categoria.key}`}>
+              <div class={`rounded-[1.5rem] bg-gradient-to-r ${categoria.acento} p-[1px]`}>
+                <div class="panel-inner rounded-[1.45rem] bg-white/96 p-5 sm:p-6 dark:bg-slate-950/90">
+                  <div class="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
+                    <div class="max-w-2xl">
+                      <div class="flex flex-wrap items-center gap-3">
+                        <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] ${categoria.fondo} text-slate-700 dark:text-slate-300`}>
+                          {categoria.cifra}
+                        </span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-500">
+                          Materia legal
+                        </span>
+                      </div>
+
+                      <h3 class="mt-4 font-serif text-2xl md:text-3xl font-semibold text-slate-900 dark:text-slate-100">
+                        {categoria.etiqueta}
+                      </h3>
+
+                      <p class="mt-3 text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                        {categoria.descripcion}
+                      </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 xl:justify-end">
+                      {categoria.servicios.slice(0, 2).map((servicio) => (
+                        <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-400">
+                          {servicio}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    {categoria.servicios.map((servicio) => (
+                      <div class="service-card group flex items-start gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-cyan-400/30 dark:hover:bg-slate-900">
+                        <div class={`mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-r ${categoria.acento} shadow-[0_0_0_6px_rgba(34,211,238,0.08)]`}></div>
+                        <p class="text-sm font-medium leading-relaxed text-slate-700 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200">
+                          {servicio}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="lg:hidden space-y-3" id="accordion-container">
+        {categorias.map((categoria, index) => (
+          <div class="accordion-item rounded-2xl border border-slate-200/80 bg-white/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur dark:border-slate-800/60 dark:bg-slate-950/80" data-accordion={categoria.key}>
+            <button
+              type="button"
+              class="accordion-trigger flex w-full items-center justify-between px-5 py-4 text-left"
+              aria-expanded={index === 0 ? 'true' : 'false'}
+              aria-controls={`accordion-panel-${categoria.key}`}>
+              <div class="flex items-center gap-3 flex-1 min-w-0">
+                <div class={`h-2 w-2 shrink-0 rounded-full bg-gradient-to-r ${categoria.acento}`}></div>
+                <span class="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">{categoria.etiqueta}</span>
+                <span class={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${categoria.fondo} text-slate-600 dark:text-slate-300`}>
+                  {categoria.servicios.length}
+                </span>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon shrink-0 ml-3 text-slate-400 transition-transform duration-300 dark:text-slate-500">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div id={`accordion-panel-${categoria.key}`} class="accordion-panel overflow-hidden transition-all duration-500" style={`height: ${index === 0 ? 'auto' : '0px'}`}>
+              <div class="px-5 pb-5">
+                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                  {categoria.descripcion}
+                </p>
+                <div class="grid gap-2">
+                  {categoria.servicios.map((servicio) => (
+                    <div class="group flex items-start gap-3 rounded-xl border border-slate-200/80 bg-slate-50/80 px-4 py-2.5 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-cyan-400/30 dark:hover:bg-slate-900">
+                      <div class={`mt-0.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r ${categoria.acento}`}></div>
+                      <p class="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200">
+                        {servicio}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col items-start justify-between gap-4 rounded-[2rem] border border-slate-200/80 bg-white/85 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.06)] backdrop-blur md:flex-row md:items-center dark:border-slate-800/60 dark:bg-slate-950/80">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-600 dark:text-cyan-200">Siguiente paso</p>
+        <h3 class="mt-2 font-serif text-2xl font-semibold text-slate-900 dark:text-slate-100">Cuéntanos tu asunto y te orientamos desde la primera conversación.</h3>
+      </div>
+
+      <a href="#contacto" class="btn-primary inline-flex items-center gap-2 rounded-full !px-6 !py-3">
+        Agendar consulta
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#servicios',
+      start: 'top 72%',
+      toggleActions: 'play none none none',
+    },
+  });
+
+  tl.to('#servicios-title', { opacity: 1, y: 0, duration: 0.7 })
+    .to('#servicios-subtitle', { opacity: 1, y: 0, duration: 0.7 }, '-=0.45');
+
+  const tabs = Array.from(document.querySelectorAll<HTMLElement>('.categoria-tab'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('.categoria-panel'));
+
+  const setActive = (target: string) => {
+    gsap.killTweensOf(panels);
+
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.target === target;
+      tab.setAttribute('aria-selected', String(isActive));
+      tab.classList.toggle('border-cyan-500', isActive);
+      tab.classList.toggle('bg-cyan-500', isActive);
+      tab.classList.toggle('text-white', isActive);
+      tab.classList.toggle('shadow-lg', isActive);
+      tab.classList.toggle('shadow-cyan-500/20', isActive);
+      tab.classList.toggle('border-slate-200', !isActive);
+      tab.classList.toggle('bg-slate-50', !isActive);
+      tab.classList.toggle('text-slate-700', !isActive);
+      tab.classList.toggle('hover:border-cyan-300', !isActive);
+      tab.classList.toggle('hover:bg-cyan-50', !isActive);
+      tab.classList.toggle('dark:border-slate-800', !isActive);
+      tab.classList.toggle('dark:bg-slate-900/80', !isActive);
+      tab.classList.toggle('dark:text-slate-400', !isActive);
+      tab.classList.toggle('dark:hover:border-cyan-500/30', !isActive);
+      tab.classList.toggle('dark:hover:bg-slate-900', !isActive);
+    });
+
+    panels.forEach((panel) => {
+      const isActive = panel.dataset.panel === target;
+      panel.classList.toggle('hidden', !isActive);
+      panel.classList.toggle('block', isActive);
+
+      if (isActive) {
+        const inner = panel.querySelector<HTMLElement>('.panel-inner');
+        const cards = panel.querySelectorAll<HTMLElement>('.service-card');
+
+        gsap.set(panel, { opacity: 0, y: 12 });
+        if (inner) {
+          gsap.set(inner, { opacity: 0, y: 10 });
+        }
+        gsap.set(cards, { opacity: 0, y: 8 });
+
+        gsap.to(panel, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+        if (inner) {
+          gsap.to(inner, { opacity: 1, y: 0, duration: 0.3, delay: 0.05, ease: 'power2.out' });
+        }
+        gsap.to(cards, { opacity: 1, y: 0, duration: 0.24, stagger: 0.03, delay: 0.08, ease: 'power2.out' });
+      }
+    });
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.target;
+      if (target) setActive(target);
+    });
+  });
+
+  const accordionTriggers = Array.from(document.querySelectorAll<HTMLElement>('.accordion-trigger'));
+  accordionTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest<HTMLElement>('.accordion-item');
+      const panel = item?.querySelector<HTMLElement>('.accordion-panel');
+      const icon = trigger.querySelector<HTMLElement>('.accordion-icon');
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+      if (!panel || !item) return;
+
+      accordionTriggers.forEach((otherTrigger) => {
+        const otherItem = otherTrigger.closest<HTMLElement>('.accordion-item');
+        const otherPanel = otherItem?.querySelector<HTMLElement>('.accordion-panel');
+        const otherIcon = otherTrigger.querySelector<HTMLElement>('.accordion-icon');
+        if (otherItem !== item && otherPanel) {
+          otherTrigger.setAttribute('aria-expanded', 'false');
+          gsap.to(otherPanel, { height: 0, duration: 0.4, ease: 'power2.inOut' });
+          if (otherIcon) {
+            gsap.to(otherIcon, { rotation: 0, duration: 0.3, ease: 'power2.out' });
+          }
+          otherItem.classList.remove('border-cyan-400/40', 'dark:border-cyan-500/30');
+          otherItem.classList.add('border-slate-200/80', 'dark:border-slate-800/60');
+        }
+      });
+
+      if (isExpanded) {
+        trigger.setAttribute('aria-expanded', 'false');
+        gsap.to(panel, { height: 0, duration: 0.4, ease: 'power2.inOut' });
+        if (icon) {
+          gsap.to(icon, { rotation: 0, duration: 0.3, ease: 'power2.out' });
+        }
+        item.classList.remove('border-cyan-400/40', 'dark:border-cyan-500/30');
+        item.classList.add('border-slate-200/80', 'dark:border-slate-800/60');
+      } else {
+        trigger.setAttribute('aria-expanded', 'true');
+        gsap.to(panel, { height: 'auto', duration: 0.4, ease: 'power2.inOut' });
+        if (icon) {
+          gsap.to(icon, { rotation: 180, duration: 0.3, ease: 'power2.out' });
+        }
+        item.classList.remove('border-slate-200/80', 'dark:border-slate-800/60');
+        item.classList.add('border-cyan-400/40', 'dark:border-cyan-500/30');
+      }
+    });
+  });
+
+  const firstAccordionPanel = document.querySelector<HTMLElement>('.accordion-panel');
+  const firstAccordionIcon = document.querySelector<HTMLElement>('.accordion-trigger .accordion-icon');
+  const firstAccordionItem = document.querySelector<HTMLElement>('.accordion-item');
+  if (firstAccordionPanel) {
+    gsap.set(firstAccordionPanel, { height: 'auto' });
+  }
+  if (firstAccordionIcon) {
+    gsap.set(firstAccordionIcon, { rotation: 180 });
+  }
+  if (firstAccordionItem) {
+    firstAccordionItem.classList.add('border-cyan-400/40', 'dark:border-cyan-500/30');
+    firstAccordionItem.classList.remove('border-slate-200/80', 'dark:border-slate-800/60');
+  }
+</script>

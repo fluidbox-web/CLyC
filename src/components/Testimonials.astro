@@ -1,0 +1,138 @@
+---
+const testimonios = [
+  {
+    nombre: 'María Fernanda R.',
+    tipo: 'Asunto familiar',
+    texto: 'Me acompañaron con mucha empatía durante mi proceso de divorcio. Siempre me explicaron cada paso con claridad y sentí que mi caso era su prioridad. Las recomiendo totalmente.',
+    iniciales: 'MF',
+  },
+  {
+    nombre: 'Carlos A. Mendoza',
+    tipo: 'Amparo',
+    texto: 'Atendieron mi amparo con rapidez y estrategia. Su conocimiento del proceso fue determinante para obtener un resultado favorable. Profesionalismo de principio a fin.',
+    iniciales: 'CA',
+  },
+  {
+    nombre: 'Andrea Gutiérrez',
+    tipo: 'Contrato de arrendamiento',
+    texto: 'Revisaron mi contrato de arrendamiento y me ayudaron a proteger mis derechos como arrendataria. Servicio claro, honesto y muy profesional.',
+    iniciales: 'AG',
+  },
+  {
+    nombre: 'Roberto Sánchez P.',
+    tipo: 'Asunto mercantil',
+    texto: 'Gracias a su gestión logramos resolver un conflicto mercantil que llevaba meses detenido. Su enfoque estratégico hizo toda la diferencia.',
+    iniciales: 'RS',
+  },
+];
+---
+
+<section id="testimonios" class="relative py-20 md:py-28 bg-slate-100 dark:bg-slate-950 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none opacity-[0.55] dark:opacity-[0.18]" style="background-image: radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.15) 1px, transparent 0); background-size: 32px 32px;"></div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-cyan-400/6 blur-3xl pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700 shadow-sm backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-cyan-200 opacity-0 translate-y-8" id="testimonios-eyebrow">
+        Testimonios
+      </div>
+
+      <h2 class="section-title mt-6 opacity-0 translate-y-8" id="testimonios-title">
+        Lo que dicen nuestros clientes
+      </h2>
+
+      <p class="section-subtitle mt-5 opacity-0 translate-y-8" id="testimonios-subtitle">
+        La confianza de quienes nos han acompañado es nuestra mejor carta de presentación.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+      {testimonios.map((t, i) => (
+        <div
+          class={`testimonial-card group relative rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 md:p-8 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)] dark:border-slate-800/60 dark:bg-slate-950/80 opacity-0 translate-y-8`}
+          data-testimonial={i}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="text-cyan-400/30 mb-4">
+            <path fill="currentColor" d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+
+          <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed italic">
+            "{t.texto}"
+          </p>
+
+          <div class="mt-6 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-sky-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-cyan-500/15">
+              {t.iniciales}
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800 dark:text-slate-100">{t.nombre}</p>
+              <p class="text-xs font-medium uppercase tracking-wider text-cyan-600 dark:text-cyan-400">{t.tipo}</p>
+            </div>
+          </div>
+
+          <div class="absolute top-6 right-6 flex gap-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center opacity-0 translate-y-8" id="testimonios-cta">
+      <a href="#contacto" class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 hover:text-cyan-500 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors duration-300 group">
+        ¿Tienes un caso similar? Cuéntanos
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform duration-300">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#testimonios',
+      start: 'top 72%',
+      toggleActions: 'play none none none',
+    },
+  });
+
+  tl.to('#testimonios-eyebrow', { opacity: 1, y: 0, duration: 0.6 })
+    .to('#testimonios-title', { opacity: 1, y: 0, duration: 0.7 }, '-=0.35')
+    .to('#testimonios-subtitle', { opacity: 1, y: 0, duration: 0.6 }, '-=0.35');
+
+  const cards = gsap.utils.toArray<HTMLElement>('.testimonial-card');
+  cards.forEach((card, i) => {
+    gsap.to(card, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.1 * i,
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
+
+  gsap.to('#testimonios-cta', {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    scrollTrigger: {
+      trigger: '#testimonios-cta',
+      start: 'top 90%',
+      toggleActions: 'play none none none',
+    },
+  });
+</script>
