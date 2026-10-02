@@ -101,37 +101,35 @@ const testimonios = [
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '#testimonios',
-      start: 'top 72%',
+      start: 'top 80%',
       toggleActions: 'play none none none',
     },
   });
 
-  tl.to('#testimonios-eyebrow', { opacity: 1, y: 0, duration: 0.6 })
-    .to('#testimonios-title', { opacity: 1, y: 0, duration: 0.7 }, '-=0.35')
-    .to('#testimonios-subtitle', { opacity: 1, y: 0, duration: 0.6 }, '-=0.35');
+  tl.to('#testimonios-eyebrow', { opacity: 1, y: 0, duration: 0.4 })
+    .to('#testimonios-title', { opacity: 1, y: 0, duration: 0.5 }, '-=0.2')
+    .to('#testimonios-subtitle', { opacity: 1, y: 0, duration: 0.4 }, '-=0.2');
 
   const cards = gsap.utils.toArray<HTMLElement>('.testimonial-card');
-  cards.forEach((card, i) => {
-    gsap.to(card, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      delay: 0.1 * i,
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    });
+  gsap.to(cards, {
+    opacity: 1,
+    y: 0,
+    duration: 0.4,
+    stagger: 0.08,
+    scrollTrigger: {
+      trigger: '#testimonios',
+      start: 'top 75%',
+      toggleActions: 'play none none none',
+    },
   });
 
   gsap.to('#testimonios-cta', {
     opacity: 1,
     y: 0,
-    duration: 0.6,
+    duration: 0.4,
     scrollTrigger: {
-      trigger: '#testimonios-cta',
-      start: 'top 90%',
+      trigger: '#testimonios',
+      start: 'top 70%',
       toggleActions: 'play none none none',
     },
   });
