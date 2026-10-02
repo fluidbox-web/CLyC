@@ -1,15 +1,19 @@
+---
+import fotoImagen from '../assets/fotos/i1.jpg';
+---
+
 <section id="nosotras" class="relative py-20 md:py-28 bg-white dark:bg-slate-950 overflow-hidden">
   <div class="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-cyan-400/8 blur-3xl pointer-events-none"></div>
   <div class="absolute -bottom-32 -left-32 h-72 w-72 rounded-full bg-slate-500/5 blur-3xl pointer-events-none dark:bg-slate-700/10"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center lg:items-stretch">
       <div class="space-y-6">
         <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-slate-50/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700 shadow-sm backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-cyan-200 opacity-0 translate-y-8" id="nosotras-eyebrow">
           Sobre nosotras
         </div>
 
-        <h2 class="section-title opacity-0 translate-y-8" id="nosotras-title">
+        <h2 class="section-title opacity-0 translate-y-8 lg:!text-left" id="nosotras-title">
           Compromiso, ética y cercanía en cada caso
         </h2>
 
@@ -33,18 +37,18 @@
         </div>
       </div>
 
-      <div class="relative opacity-0 translate-y-12" id="nosotras-image">
+      <div class="relative opacity-0 translate-y-12 lg:h-full lg:max-h-[80vh]" id="nosotras-image">
         <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/15 via-transparent to-slate-400/10 blur-2xl pointer-events-none"></div>
-        <div class="relative rounded-[2rem] border border-slate-200/80 bg-slate-100 shadow-[0_24px_70px_rgba(15,23,42,0.08)] overflow-hidden aspect-[4/5] dark:border-slate-800/60 dark:bg-slate-900">
-          <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-slate-600/10"></div>
-          <div class="relative h-full flex flex-col items-center justify-center p-8 text-center space-y-4">
-            <div class="w-20 h-20 rounded-full bg-cyan-500/15 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-500">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
-              </svg>
-            </div>
-            <p class="font-serif text-2xl font-semibold text-slate-800 dark:text-slate-100">Confianza que transforma</p>
-            <p class="text-sm text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed">Justicia que trasciende. Asistencia legal profesional con vocación de servicio.</p>
+        <div class="relative rounded-[2rem] border border-slate-200/80 shadow-[0_24px_70px_rgba(15,23,42,0.08)] overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-full lg:max-h-[80vh] dark:border-slate-800/60">
+          <img
+            src={fotoImagen.src}
+            alt="Despacho CL&C De La Riviera"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-center">
+            <p class="font-serif text-xl font-semibold text-white drop-shadow-lg">Confianza que transforma</p>
+            <p class="text-sm text-white/80 max-w-xs mx-auto leading-relaxed mt-1">Justicia que trasciende. Asistencia legal profesional con vocación de servicio.</p>
           </div>
         </div>
       </div>

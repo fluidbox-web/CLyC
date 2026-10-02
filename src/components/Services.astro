@@ -24,9 +24,9 @@ const categorias = [
     etiqueta: 'Materia civil',
     descripcion: 'Litigio y asesoría civil para proteger patrimonio, contratos y derechos reales con visión preventiva y de fondo.',
     cifra: '07 servicios',
-    acento: 'from-slate-700 to-slate-500',
-    borde: 'border-slate-300/40',
-    fondo: 'bg-slate-500/8',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
     servicios: [
       'Juicios de nulidad',
       'Juicios reivindicatorios',
@@ -42,9 +42,9 @@ const categorias = [
     etiqueta: 'Materia civil oral',
     descripcion: 'Procesos orales diseñados para responder con rapidez y precisión en asuntos de garantía, posesión y jurisdicción voluntaria.',
     cifra: '03 servicios',
-    acento: 'from-emerald-500 to-teal-500',
-    borde: 'border-emerald-500/25',
-    fondo: 'bg-emerald-500/8',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
     servicios: [
       'Juicio hipotecario',
       'Juicio de desahucio',
@@ -56,9 +56,9 @@ const categorias = [
     etiqueta: 'Materia mercantil',
     descripcion: 'Cobranza, contratos y títulos de crédito con enfoque en recuperación efectiva y control del riesgo comercial.',
     cifra: '05 servicios',
-    acento: 'from-amber-500 to-orange-500',
-    borde: 'border-amber-500/25',
-    fondo: 'bg-amber-500/8',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
     servicios: [
       'Cumplimiento de contrato',
       'Rescisión de contrato',
@@ -72,9 +72,9 @@ const categorias = [
     etiqueta: 'Amparos',
     descripcion: 'Defensa constitucional para proteger derechos frente a actos de autoridad, en vía indirecta o directa.',
     cifra: '02 servicios',
-    acento: 'from-violet-500 to-fuchsia-500',
-    borde: 'border-violet-500/25',
-    fondo: 'bg-violet-500/8',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
     servicios: [
       'Amparo indirecto',
       'Amparo directo',
@@ -85,9 +85,9 @@ const categorias = [
     etiqueta: 'Migración',
     descripcion: 'Gestión migratoria ordenada para resolver trámites, renovación documental y visados sin fricción.',
     cifra: '05 servicios',
-    acento: 'from-indigo-500 to-sky-500',
-    borde: 'border-indigo-500/25',
-    fondo: 'bg-indigo-500/8',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
     servicios: [
       'Obtención de constancia de empleador',
       'Actualización de constancia de empleador',
@@ -101,9 +101,9 @@ const categorias = [
     etiqueta: 'Contratos',
     descripcion: 'Redacción y revisión contractual para blindar operaciones patrimoniales, laborales y de prestación de servicios.',
     cifra: '08 servicios',
-    acento: 'from-rose-500 to-orange-400',
-    borde: 'border-rose-500/25',
-    fondo: 'bg-rose-500/8',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
     servicios: [
       'Compraventa',
       'Cesión de derechos',
@@ -120,9 +120,9 @@ const categorias = [
     etiqueta: 'Remates bancarios',
     descripcion: 'Acompañamiento para identificar, evaluar y adquirir oportunidades con respaldo legal y revisión previa de riesgos.',
     cifra: '01 servicio',
-    acento: 'from-slate-900 to-cyan-700',
-    borde: 'border-slate-300/40',
-    fondo: 'bg-slate-600/8',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
     servicios: [
       'Remates bancarios',
     ],
@@ -153,7 +153,7 @@ const totalServicios = categorias.reduce((acumulado, categoria) => acumulado + c
     </div>
 
     <div class="mt-12">
-      <div class="hidden lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8 lg:items-start">
+      <div class="hidden lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8">
         <aside class="sticky top-24 rounded-3xl border border-slate-200/80 bg-white/85 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur dark:border-slate-800/60 dark:bg-slate-950/80">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-500">Materias</p>
           <div class="mt-4 flex flex-col gap-2" id="categoria-nav">
@@ -173,15 +173,15 @@ const totalServicios = categorias.reduce((acumulado, categoria) => acumulado + c
           </div>
         </aside>
 
-        <div id="categoria-panels">
+        <div id="categoria-panels" class="relative h-full min-h-[420px]">
           {categorias.map((categoria, index) => (
             <article
               id={`panel-${categoria.key}`}
               data-panel={categoria.key}
-              class={`categoria-panel rounded-[2rem] border bg-white/90 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur transition-all duration-500 dark:bg-slate-950/85 ${categoria.borde} ${index === 0 ? 'block' : 'hidden'}`}
+              class={`categoria-panel absolute inset-0 rounded-[2rem] border bg-white/90 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur transition-opacity duration-500 dark:bg-slate-950/85 ${categoria.borde} ${index === 0 ? 'block opacity-100' : 'hidden opacity-0'}`}
               aria-labelledby={`tab-${categoria.key}`}>
-              <div class={`rounded-[1.5rem] bg-gradient-to-r ${categoria.acento} p-[1px]`}>
-                <div class="panel-inner rounded-[1.45rem] bg-white/96 p-5 sm:p-6 dark:bg-slate-950/90">
+              <div class={`rounded-[1.5rem] bg-gradient-to-r ${categoria.acento} p-[1px] h-full`}>
+                <div class="panel-inner rounded-[1.45rem] bg-white/96 p-5 sm:p-6 h-full flex flex-col dark:bg-slate-950/90">
                   <div class="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
                     <div class="max-w-2xl">
                       <div class="flex flex-wrap items-center gap-3">
@@ -211,7 +211,7 @@ const totalServicios = categorias.reduce((acumulado, categoria) => acumulado + c
                     </div>
                   </div>
 
-                  <div class="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                  <div class="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3 overflow-y-auto min-h-0 pr-1">
                     {categoria.servicios.map((servicio) => (
                       <div class="service-card group flex items-start gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-cyan-400/30 dark:hover:bg-slate-900">
                         <div class={`mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-r ${categoria.acento} shadow-[0_0_0_6px_rgba(34,211,238,0.08)]`}></div>
