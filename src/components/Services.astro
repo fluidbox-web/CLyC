@@ -1,27 +1,9 @@
 ---
 const categorias = [
   {
-    key: 'familiar',
-    etiqueta: 'Materia familiar',
-    descripcion: 'Asesoría sensible y estratégica para resolver conflictos familiares con acompañamiento claro en cada etapa.',
-    cifra: '08 servicios',
-    acento: 'from-cyan-500 to-sky-600',
-    borde: 'border-cyan-500/25',
-    fondo: 'bg-cyan-500/8',
-    servicios: [
-      'Divorcios',
-      'Guarda y custodia',
-      'Régimen de convivencia',
-      'Pensión alimenticia',
-      'Reconocimiento de paternidad',
-      'Pérdida de patria potestad',
-      'Juicio sucesorio testamentario e intestamentario',
-      'Consignación de pensión',
-    ],
-  },
-  {
     key: 'civil',
     etiqueta: 'Materia civil',
+    tipoAsunto: 'Asuntos Civiles',
     descripcion: 'Litigio y asesoría civil para proteger patrimonio, contratos y derechos reales con visión preventiva y de fondo.',
     cifra: '07 servicios',
     acento: 'from-cyan-500 to-sky-600',
@@ -40,6 +22,7 @@ const categorias = [
   {
     key: 'civil-oral',
     etiqueta: 'Materia civil oral',
+    tipoAsunto: 'Asuntos Civiles',
     descripcion: 'Procesos orales diseñados para responder con rapidez y precisión en asuntos de garantía, posesión y jurisdicción voluntaria.',
     cifra: '03 servicios',
     acento: 'from-cyan-500 to-sky-600',
@@ -54,6 +37,7 @@ const categorias = [
   {
     key: 'mercantil',
     etiqueta: 'Materia mercantil',
+    tipoAsunto: 'Mercantil',
     descripcion: 'Cobranza, contratos y títulos de crédito con enfoque en recuperación efectiva y control del riesgo comercial.',
     cifra: '05 servicios',
     acento: 'from-cyan-500 to-sky-600',
@@ -68,21 +52,80 @@ const categorias = [
     ],
   },
   {
+    key: 'penal',
+    etiqueta: 'Materia penal',
+    tipoAsunto: 'Asuntos Penales',
+    descripcion: 'Defensa penal en todas las etapas del proceso, con acompañamiento puntual desde la denuncia hasta el juicio y las apelaciones.',
+    cifra: '08 servicios',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
+    servicios: [
+      'Denuncia',
+      'Integración de carpetas',
+      'Audiencias de control',
+      'Audiencia de formulación de imputación y vinculación a proceso',
+      'Audiencia intermedia',
+      'Audiencia de juicio',
+      'Apelaciones',
+      'Aseguramientos de bienes inmuebles',
+    ],
+  },
+  {
     key: 'amparos',
     etiqueta: 'Amparos',
-    descripcion: 'Defensa constitucional para proteger derechos frente a actos de autoridad, en vía indirecta o directa.',
-    cifra: '02 servicios',
+    tipoAsunto: 'Amparos',
+    descripcion: 'Defensa constitucional para proteger derechos frente a actos de autoridad, en todas nuestras especialidades',
+    cifra: '05 servicios',
     acento: 'from-cyan-500 to-sky-600',
     borde: 'border-cyan-500/25',
     fondo: 'bg-cyan-500/8',
     servicios: [
       'Amparo indirecto',
       'Amparo directo',
+      'Queja',
+      'Revisión',
+      'En todas nuestras especialidades',
+    ],
+  },
+  {
+    key: 'familiar',
+    etiqueta: 'Materia familiar',
+    tipoAsunto: 'Asuntos Familiares',
+    descripcion: 'Asesoría sensible y estratégica para resolver conflictos familiares con acompañamiento claro en cada etapa.',
+    cifra: '08 servicios',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
+    servicios: [
+      'Divorcios',
+      'Guarda y custodia',
+      'Régimen de convivencia',
+      'Pensión alimenticia',
+      'Reconocimiento de paternidad',
+      'Pérdida de patria potestad',
+      'Juicio sucesorio testamentario e intestamentario',
+      'Consignación de pensión',
+    ],
+  },
+  {
+    key: 'laboral',
+    etiqueta: 'Laboral',
+    tipoAsunto: 'Laboral',
+    descripcion: 'Atención de conflictos laborales, representación en demandas y conciliaciones para proteger los derechos de trabajadores y empleadores.',
+    cifra: '02 servicios',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
+    servicios: [
+      'Demandas',
+      'Conciliaciones',
     ],
   },
   {
     key: 'migracion',
     etiqueta: 'Migración',
+    tipoAsunto: 'Trámites Migratorios',
     descripcion: 'Gestión migratoria ordenada para resolver trámites, renovación documental y visados sin fricción.',
     cifra: '05 servicios',
     acento: 'from-cyan-500 to-sky-600',
@@ -97,8 +140,22 @@ const categorias = [
     ],
   },
   {
+    key: 'remates',
+    etiqueta: 'Remates bancarios',
+    tipoAsunto: 'Remates Inmobiliarios',
+    descripcion: 'Acompañamiento para identificar, evaluar y adquirir oportunidades con respaldo legal y revisión previa de riesgos.',
+    cifra: '01 servicio',
+    acento: 'from-cyan-500 to-sky-600',
+    borde: 'border-cyan-500/25',
+    fondo: 'bg-cyan-500/8',
+    servicios: [
+      'Remates bancarios',
+    ],
+  },
+  {
     key: 'contratos',
     etiqueta: 'Contratos',
+    tipoAsunto: 'Contratos',
     descripcion: 'Redacción y revisión contractual para blindar operaciones patrimoniales, laborales y de prestación de servicios.',
     cifra: '08 servicios',
     acento: 'from-cyan-500 to-sky-600',
@@ -113,18 +170,6 @@ const categorias = [
       'Laborales',
       'Prestación de servicios',
       'Otros contratos a medida',
-    ],
-  },
-  {
-    key: 'remates',
-    etiqueta: 'Remates bancarios',
-    descripcion: 'Acompañamiento para identificar, evaluar y adquirir oportunidades con respaldo legal y revisión previa de riesgos.',
-    cifra: '01 servicio',
-    acento: 'from-cyan-500 to-sky-600',
-    borde: 'border-cyan-500/25',
-    fondo: 'bg-cyan-500/8',
-    servicios: [
-      'Remates bancarios',
     ],
   },
 ];
@@ -213,12 +258,12 @@ const totalServicios = categorias.reduce((acumulado, categoria) => acumulado + c
 
                   <div class="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3 overflow-y-auto min-h-0 pr-1">
                     {categoria.servicios.map((servicio) => (
-                      <div class="service-card group flex items-start gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-cyan-400/30 dark:hover:bg-slate-900">
+                      <a href="#contacto" data-asunto={categoria.tipoAsunto} class="service-card group flex items-start gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-cyan-400/30 dark:hover:bg-slate-900">
                         <div class={`mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-r ${categoria.acento} shadow-[0_0_0_6px_rgba(34,211,238,0.08)]`}></div>
                         <p class="text-sm font-medium leading-relaxed text-slate-700 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200">
                           {servicio}
                         </p>
-                      </div>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -254,12 +299,12 @@ const totalServicios = categorias.reduce((acumulado, categoria) => acumulado + c
                 </p>
                 <div class="grid gap-2">
                   {categoria.servicios.map((servicio) => (
-                    <div class="group flex items-start gap-3 rounded-xl border border-slate-200/80 bg-slate-50/80 px-4 py-2.5 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-cyan-400/30 dark:hover:bg-slate-900">
+                    <a href="#contacto" data-asunto={categoria.tipoAsunto} class="group flex items-start gap-3 rounded-xl border border-slate-200/80 bg-slate-50/80 px-4 py-2.5 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-cyan-400/30 dark:hover:bg-slate-900">
                       <div class={`mt-0.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r ${categoria.acento}`}></div>
                       <p class="text-sm font-medium text-slate-700 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200">
                         {servicio}
                       </p>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>

@@ -1,5 +1,95 @@
 ---
-import fotoImagen from '../assets/fotos/i1.jpg';
+import teamImagen from '../assets/fotos/team-clyc.jpeg';
+import licAna from '../assets/fotos/lic-ana.jpeg';
+import licIvette from '../assets/fotos/lic-ivette.jpeg';
+
+interface SeccionAbogada {
+  titulo: string;
+  items?: { titulo: string; meta?: string; nota?: string }[];
+  cita?: string;
+  parrafos?: string[];
+  nota?: string;
+}
+
+interface Abogada {
+  id: string;
+  nombre: string;
+  rol: string;
+  areas: string[];
+  foto: string;
+  intro: string[];
+  secciones: SeccionAbogada[];
+}
+
+const abogadas: Abogada[] = [
+  {
+    id: 'ana-alicia-ruiz-ambriz',
+    nombre: 'Ana Alicia Ruiz Ambriz',
+    rol: 'Abogada Litigante · Asociada',
+    areas: ['Materia Penal', 'Amparo', 'Derecho Familiar'],
+    foto: licAna.src,
+    intro: [
+      'Abogada litigante y Asociada de CL&C DE LA RIVIERA, con experiencia en el ejercicio profesional y en la atención estratégica de asuntos jurídicos, desarrollada tanto en el ámbito privado como en instituciones públicas y legislativas.',
+      'Su práctica profesional se concentra principalmente en materia penal, amparo y derecho familiar, participando en audiencias, elaboración de estrategias de defensa y representación jurídica, así como en la preparación, promoción y seguimiento de procedimientos judiciales.',
+      'Cuenta con experiencia en juicios orales y tradicionales, elaboración y seguimiento de demandas, promociones, recursos, incidentes, quejas y juicios de amparo, así como en la atención y seguimiento integral de asuntos ante diversas autoridades.',
+      'Como parte de su trayectoria profesional, ha colaborado en despachos jurídicos, instituciones de procuración de justicia y dependencias gubernamentales, además de contar con experiencia en el ámbito legislativo, participando en el análisis y estudio de propuestas e iniciativas de carácter jurídico.',
+      'Actualmente, como Asociada de CL&C DE LA RIVIERA, participa activamente en el análisis, estrategia, litigación y seguimiento de los asuntos que forman parte de la firma, procurando brindar a cada cliente una atención jurídica profesional, estratégica y personalizada.',
+    ],
+    secciones: [
+      {
+        titulo: 'Formación académica',
+        items: [
+          {
+            titulo: 'Maestría en Género, Derecho y Procesal Penal',
+            meta: 'Centro de Estudios de Posgrado',
+            nota: 'Egresada',
+          },
+        ],
+        parrafos: [
+          'Su formación de posgrado complementa su experiencia práctica, fortaleciendo sus conocimientos en materia de género, derechos humanos y sistema procesal penal, elementos que incorpora en el análisis y atención de los asuntos jurídicos bajo su responsabilidad.',
+        ],
+      },
+      {
+        titulo: 'Experiencia profesional',
+        parrafos: [
+          'Cuenta con trayectoria profesional desde 2017, con experiencia en litigación, asesoría jurídica, representación legal, análisis normativo y gestión institucional.',
+          'Ha desempeñado funciones en el Despacho Jurídico O&G Abogados, la Procuraduría General de Justicia del Estado de Hidalgo, la Consultoría Jurídica Rico Gómez & Asociados, la Coordinación General Jurídica del Estado de Hidalgo del Poder Ejecutivo y en el ámbito legislativo del Congreso del Estado de Hidalgo.',
+          'Desde 2022 desarrolla su ejercicio profesional en el Estado de Quintana Roo, consolidando experiencia principalmente en materia penal, amparo y derecho familiar, hasta incorporarse como Asociada de CL&C DE LA RIVIERA, donde actualmente ejerce como abogada litigante.',
+        ],
+      },
+      {
+        titulo: 'Filosofía profesional',
+        cita: 'La defensa jurídica exige conocimiento, estrategia y compromiso.',
+        parrafos: [
+          'Su ejercicio profesional se encuentra orientado a la defensa de los derechos e intereses de sus clientes, mediante un análisis jurídico responsable y la construcción de estrategias adecuadas para cada caso.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'ivette-del-rocio-lopez-gomez',
+    nombre: 'Ivette del Rocío López Gómez',
+    rol: 'Abogada Asociada · Especialista en Derecho Civil, Mercantil y Amparo',
+    areas: ['Derecho Civil', 'Derecho Mercantil', 'Amparo'],
+    foto: licIvette.src,
+    intro: [
+      'Abogada litigante con amplia experiencia en el ejercicio profesional y en el seguimiento integral de procedimientos judiciales, particularmente en las materias Civil, Mercantil y Amparo.',
+      'Es Licenciada en Derecho por la Universidad de Quintana Roo, con título y cédula profesional, y actualmente se encuentra cursando la Maestría en Juicio Oral Civil y Mercantil, fortaleciendo su preparación académica y práctica en los nuevos modelos de impartición de justicia.',
+      'A lo largo de su trayectoria profesional ha participado en la atención y representación de clientes, elaboración y contestación de demandas, seguimiento de expedientes, preparación de promociones y recursos, elaboración de contratos y convenios, así como en la preparación y asistencia a diversas audiencias. Cuenta además con experiencia en la elaboración y seguimiento de amparos directos e indirectos, amparo adhesivo y recursos de revisión.',
+      'Su experiencia profesional también comprende el manejo de procedimientos relacionados con cumplimiento y rescisión de contratos, nulidad, prescripción positiva, acciones hipotecarias y reivindicatorias, otorgamiento de escritura, desahucio, juicios ejecutivos y ordinarios mercantiles, así como la elaboración de instrumentos jurídicos en materia contractual.',
+      'Su perfil se distingue por su capacidad de análisis, responsabilidad, organización, liderazgo y compromiso con la atención profesional de cada asunto, cualidades que forman parte de su trayectoria laboral.',
+    ],
+    secciones: [
+      {
+        titulo: 'En CL&C De La Riviera',
+        parrafos: [
+          'Como Abogada Asociada, Ivette López forma parte de nuestro equipo jurídico, contribuyendo con experiencia, preparación y visión estratégica para brindar una defensa y asesoría jurídica profesional, ética y orientada a resultados, especialmente en las áreas de Derecho Civil, Mercantil y Amparo.',
+        ],
+        nota: 'Su experiencia. Nuestra fortaleza. Tu confianza.',
+      },
+    ],
+  },
+];
 ---
 
 <section id="nosotras" class="relative py-14 md:py-20 bg-white dark:bg-slate-950 overflow-hidden">
@@ -27,11 +117,11 @@ import fotoImagen from '../assets/fotos/i1.jpg';
 
         <div class="grid grid-cols-2 gap-4 pt-4">
           <div class="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-5 dark:border-slate-800/60 dark:bg-slate-900/60 opacity-0 translate-y-8" id="nosotras-stat-1">
-            <p class="text-3xl font-bold text-cyan-500 dark:text-cyan-400">+39</p>
+            <p class="text-3xl font-bold text-cyan-500 dark:text-cyan-400">+560</p>
             <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Servicios legales</p>
           </div>
           <div class="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-5 dark:border-slate-800/60 dark:bg-slate-900/60 opacity-0 translate-y-8" id="nosotras-stat-2">
-            <p class="text-3xl font-bold text-cyan-500 dark:text-cyan-400">08</p>
+            <p class="text-3xl font-bold text-cyan-500 dark:text-cyan-400">10</p>
             <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Áreas de práctica</p>
           </div>
         </div>
@@ -41,8 +131,8 @@ import fotoImagen from '../assets/fotos/i1.jpg';
         <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/15 via-transparent to-slate-400/10 blur-2xl pointer-events-none"></div>
         <div class="relative rounded-[2rem] border border-slate-200/80 shadow-[0_24px_70px_rgba(15,23,42,0.08)] overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-full lg:max-h-[80vh] dark:border-slate-800/60">
           <img
-            src={fotoImagen.src}
-            alt="Despacho CL&C De La Riviera"
+            src={teamImagen.src}
+            alt="Equipo de CL&C De La Riviera"
             class="absolute inset-0 w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
@@ -83,8 +173,164 @@ import fotoImagen from '../assets/fotos/i1.jpg';
         <p class="text-sm text-slate-500 dark:text-slate-400">Procesos claros y comunicación oportuna para tu tranquilidad.</p>
       </div>
     </div>
+
+    <div class="mt-16 md:mt-20" id="nosotras-equipo">
+      <div class="mx-auto max-w-3xl text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-slate-50/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700 shadow-sm backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-cyan-200 opacity-0 translate-y-8" id="nosotras-equipo-eyebrow">
+          Nuestro equipo
+        </div>
+
+        <h3 class="section-title mt-6 opacity-0 translate-y-8" id="nosotras-equipo-title">
+          Las abogadas detrás del despacho
+        </h3>
+
+        <p class="section-subtitle mt-5 opacity-0 translate-y-8" id="nosotras-equipo-subtitle">
+          Profesionistas con formación sólida y experiencia local. Conoce su trayectoria y el respaldo detrás de cada asunto.
+        </p>
+      </div>
+
+      <div class="mx-auto mt-12 grid max-w-4xl gap-8 sm:grid-cols-2 sm:gap-10">
+        {abogadas.map((abogada) => (
+          <button
+            type="button"
+            class="abogada-card group relative w-full overflow-hidden rounded-[2rem] border border-slate-200/80 bg-slate-50 text-left shadow-[0_24px_70px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan-400/60 hover:shadow-[0_30px_80px_rgba(34,211,238,0.2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-800/70 dark:bg-slate-900/60 dark:focus-visible:ring-offset-slate-950 opacity-0 translate-y-8"
+            data-abogada={abogada.id}
+            aria-haspopup="dialog">
+            <span class="relative block aspect-[4/5] overflow-hidden">
+              <img
+                src={abogada.foto}
+                alt={`Retrato de ${abogada.nombre}`}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+              />
+              <span class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent"></span>
+              <span class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
+
+              <span class="absolute inset-x-0 bottom-0 block p-5 sm:p-6">
+                <span class="block truncate font-serif text-xl font-semibold text-white drop-shadow-md sm:text-2xl">
+                  {abogada.nombre}
+                </span>
+                <span class="mt-1 block truncate text-sm text-white/75">
+                  {abogada.areas.join(' · ')}
+                </span>
+                <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+                  Ver trayectoria
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </span>
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
+
+<div
+  id="team-modal"
+  class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6"
+  aria-hidden="true">
+  <div id="team-modal-backdrop" class="absolute inset-0 bg-slate-950/75 opacity-0 backdrop-blur-sm"></div>
+
+  <div
+    id="team-modal-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="team-modal-title"
+    class="relative z-10 max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white opacity-0 shadow-[0_40px_120px_rgba(2,6,23,0.55)] dark:border-slate-800/80 dark:bg-slate-950">
+    <button
+      id="team-modal-close"
+      type="button"
+      aria-label="Cerrar"
+      class="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-slate-300/60 bg-white/80 text-slate-700 shadow-sm backdrop-blur transition hover:bg-white hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 dark:border-slate-700/70 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+      </svg>
+    </button>
+    <div id="team-modal-body" class="min-h-0"></div>
+  </div>
+</div>
+
+{abogadas.map((abogada) => (
+  <template id={`abogada-tpl-${abogada.id}`}>
+    <div class="flex h-[90vh] flex-col md:h-[80vh] md:flex-row">
+      <div class="relative h-60 shrink-0 md:h-auto md:w-2/5">
+        <img src={abogada.foto} alt={`Retrato de ${abogada.nombre}`} class="absolute inset-0 h-full w-full object-cover object-top" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 hidden p-7 md:block">
+          <p class="font-serif text-xl font-semibold text-white">{abogada.nombre}</p>
+          <p class="mt-1 text-sm text-cyan-200">{abogada.areas.join(' · ')}</p>
+        </div>
+      </div>
+
+      <div class="min-h-0 flex-1 overflow-y-auto overscroll-contain p-6 sm:p-8">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-600 dark:text-cyan-300">{abogada.rol}</p>
+        <h3 id="team-modal-title" class="mt-3 font-serif text-2xl font-semibold text-slate-900 dark:text-slate-100 sm:text-3xl">{abogada.nombre}</h3>
+
+        <div class="mt-4 flex flex-wrap gap-2">
+          {abogada.areas.map((area) => (
+            <span class="inline-flex items-center rounded-full border border-cyan-500/20 bg-cyan-500/5 px-3 py-1.5 text-xs font-semibold text-cyan-700 dark:border-cyan-500/25 dark:bg-cyan-500/10 dark:text-cyan-200">{area}</span>
+          ))}
+        </div>
+
+        <div class="mt-6 space-y-4">
+          {abogada.intro.map((parrafo) => (
+            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">{parrafo}</p>
+          ))}
+        </div>
+
+        {abogada.secciones.map((seccion) => (
+          <div class="mt-8">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-500">{seccion.titulo}</p>
+
+            {seccion.items && (
+              <div class="mt-4 space-y-3">
+                {seccion.items.map((item) => (
+                  <div class="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4 dark:border-slate-800/70 dark:bg-slate-900/60">
+                    <p class="font-medium text-slate-800 dark:text-slate-100">{item.titulo}</p>
+                    {item.meta && <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">{item.meta}</p>}
+                    {item.nota && (
+                      <span class="mt-2 inline-flex rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-600 dark:text-cyan-300">{item.nota}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {seccion.cita && (
+              <blockquote class="mt-4 border-l-2 border-cyan-400 pl-4 font-serif text-lg italic leading-relaxed text-slate-700 dark:text-slate-200">
+                “{seccion.cita}”
+              </blockquote>
+            )}
+
+            {seccion.parrafos && (
+              <div class="mt-4 space-y-4">
+                {seccion.parrafos.map((parrafo) => (
+                  <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">{parrafo}</p>
+                ))}
+              </div>
+            )}
+
+            {seccion.nota && (
+              <p class="mt-4 font-serif text-lg font-semibold text-cyan-600 dark:text-cyan-300">{seccion.nota}</p>
+            )}
+          </div>
+        ))}
+
+        <div class="mt-8 flex flex-col gap-4 border-t border-slate-200/80 pt-6 dark:border-slate-800/70 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-sm text-slate-500 dark:text-slate-400">¿Deseas agendar una consulta?</p>
+          <a href="#contacto" data-close-modal class="btn-primary inline-flex items-center justify-center gap-2 !rounded-full !px-6 !py-3 text-sm">
+            Agenda una cita
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+))}
 
 <script>
   import gsap from 'gsap';
@@ -110,4 +356,104 @@ import fotoImagen from '../assets/fotos/i1.jpg';
     .to('#nosotras-valor-1', { opacity: 1, y: 0, duration: 0.5 }, '-=0.5')
     .to('#nosotras-valor-2', { opacity: 1, y: 0, duration: 0.5 }, '-=0.35')
     .to('#nosotras-valor-3', { opacity: 1, y: 0, duration: 0.5 }, '-=0.35');
+
+  const teamTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#nosotras-equipo',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+  });
+
+  teamTl
+    .to('#nosotras-equipo-eyebrow', { opacity: 1, y: 0, duration: 0.6 })
+    .to('#nosotras-equipo-title', { opacity: 1, y: 0, duration: 0.7 }, '-=0.35')
+    .to('#nosotras-equipo-subtitle', { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+    .to('.abogada-card', { opacity: 1, y: 0, duration: 0.7, stagger: 0.15 }, '-=0.3');
+
+  const teamModal = document.getElementById('team-modal');
+  const teamBackdrop = document.getElementById('team-modal-backdrop');
+  const teamPanel = document.getElementById('team-modal-panel');
+  const teamBody = document.getElementById('team-modal-body');
+  const teamClose = document.getElementById('team-modal-close');
+  let teamLastFocused: HTMLElement | null = null;
+
+  const openTeamModal = (id: string | null) => {
+    if (!id || !teamModal || !teamBody) return;
+    const template = document.getElementById(`abogada-tpl-${id}`) as HTMLTemplateElement | null;
+    if (!template) return;
+
+    teamBody.replaceChildren(template.content.cloneNode(true));
+    teamLastFocused = document.activeElement as HTMLElement | null;
+
+    teamModal.classList.remove('hidden');
+    teamModal.classList.add('flex');
+    teamModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    gsap.killTweensOf([teamBackdrop, teamPanel]);
+    gsap.set([teamBackdrop], { opacity: 0 });
+    gsap.set(teamPanel, { opacity: 0, y: 24, scale: 0.96 });
+    gsap.to(teamBackdrop, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+    gsap.to(teamPanel, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'power3.out' });
+
+    teamClose?.focus();
+  };
+
+  const closeTeamModal = () => {
+    if (!teamModal || teamModal.classList.contains('hidden')) return;
+
+    gsap.killTweensOf([teamBackdrop, teamPanel]);
+    gsap.to(teamBackdrop, { opacity: 0, duration: 0.25, ease: 'power2.in' });
+    gsap.to(teamPanel, {
+      opacity: 0,
+      y: 24,
+      scale: 0.96,
+      duration: 0.3,
+      ease: 'power2.in',
+      onComplete: () => {
+        teamModal.classList.add('hidden');
+        teamModal.classList.remove('flex');
+        teamModal.setAttribute('aria-hidden', 'true');
+        teamBody?.replaceChildren();
+        document.body.style.overflow = '';
+        teamLastFocused?.focus();
+      },
+    });
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-abogada]').forEach((card) => {
+    card.addEventListener('click', () => openTeamModal(card.getAttribute('data-abogada')));
+  });
+
+  teamClose?.addEventListener('click', closeTeamModal);
+  teamBackdrop?.addEventListener('click', closeTeamModal);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeTeamModal();
+  });
+
+  teamModal?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab' || !teamPanel) return;
+    const focusables = teamPanel.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  teamBody?.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest('[data-close-modal]')) closeTeamModal();
+  });
 </script>
