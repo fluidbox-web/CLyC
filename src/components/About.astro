@@ -107,11 +107,11 @@ const abogadas: Abogada[] = [
           Compromiso, ética y cercanía en cada caso
         </h2>
 
-        <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed opacity-0 translate-y-8" id="nosotras-text-1">
+        <p class="text-justify text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed opacity-0 translate-y-8" id="nosotras-text-1">
           En <span class="font-semibold text-slate-800 dark:text-slate-100">CL&C De La Riviera</span> somos un despacho de abogadas con presencia en la Riviera Maya. Nos distinguimos por ofrecer atención personalizada, estrategia clara y acompañamiento constante en cada etapa del proceso legal.
         </p>
 
-        <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed opacity-0 translate-y-8" id="nosotras-text-2">
+        <p class="text-justify text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed opacity-0 translate-y-8" id="nosotras-text-2">
           Creemos en una práctica jurídica humana: escuchar con atención, explicar con claridad y actuar con precisión. Nuestro objetivo es que cada cliente se sienta respaldado, informado y seguro de las decisiones que toma.
         </p>
 
@@ -129,11 +129,11 @@ const abogadas: Abogada[] = [
 
       <div class="relative opacity-0 translate-y-12 lg:h-full lg:max-h-[80vh]" id="nosotras-image">
         <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/15 via-transparent to-slate-400/10 blur-2xl pointer-events-none"></div>
-        <div class="relative rounded-[2rem] border border-slate-200/80 shadow-[0_24px_70px_rgba(15,23,42,0.08)] overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-full lg:max-h-[80vh] dark:border-slate-800/60">
+        <div class="relative rounded-[2rem] border border-slate-200/80 bg-slate-100 shadow-[0_24px_70px_rgba(15,23,42,0.08)] overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-full lg:max-h-[80vh] dark:border-slate-800/60 dark:bg-slate-900">
           <img
             src={teamImagen.src}
             alt="Equipo de CL&C De La Riviera"
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-contain lg:object-cover"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6 text-center">
@@ -278,7 +278,7 @@ const abogadas: Abogada[] = [
 
         <div class="mt-6 space-y-4">
           {abogada.intro.map((parrafo) => (
-            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">{parrafo}</p>
+            <p class="text-justify text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">{parrafo}</p>
           ))}
         </div>
 
@@ -309,7 +309,7 @@ const abogadas: Abogada[] = [
             {seccion.parrafos && (
               <div class="mt-4 space-y-4">
                 {seccion.parrafos.map((parrafo) => (
-                  <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">{parrafo}</p>
+                  <p class="text-justify text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">{parrafo}</p>
                 ))}
               </div>
             )}
@@ -454,6 +454,15 @@ const abogadas: Abogada[] = [
 
   teamBody?.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
-    if (target.closest('[data-close-modal]')) closeTeamModal();
+    const trigger = target.closest<HTMLElement>('[data-close-modal]');
+    if (!trigger) return;
+    event.preventDefault();
+    const hash = trigger.getAttribute('href');
+    closeTeamModal();
+    if (hash && hash.startsWith('#')) {
+      window.setTimeout(() => {
+        document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 360);
+    }
   });
 </script>
