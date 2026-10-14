@@ -1,33 +1,11 @@
 ---
-const testimonios = [
-  {
-    nombre: 'María Fernanda R.',
-    tipo: 'Asunto familiar',
-    texto: 'Me acompañaron con mucha empatía durante mi proceso de divorcio. Siempre me explicaron cada paso con claridad y sentí que mi caso era su prioridad. Las recomiendo totalmente.',
-    iniciales: 'MF',
-  },
-  {
-    nombre: 'Carlos A. Mendoza',
-    tipo: 'Amparo',
-    texto: 'Atendieron mi amparo con rapidez y estrategia. Su conocimiento del proceso fue determinante para obtener un resultado favorable. Profesionalismo de principio a fin.',
-    iniciales: 'CA',
-  },
-  {
-    nombre: 'Andrea Gutiérrez',
-    tipo: 'Contrato de arrendamiento',
-    texto: 'Revisaron mi contrato de arrendamiento y me ayudaron a proteger mis derechos como arrendataria. Servicio claro, honesto y muy profesional.',
-    iniciales: 'AG',
-  },
-  {
-    nombre: 'Roberto Sánchez P.',
-    tipo: 'Asunto mercantil',
-    texto: 'Gracias a su gestión logramos resolver un conflicto mercantil que llevaba meses detenido. Su enfoque estratégico hizo toda la diferencia.',
-    iniciales: 'RS',
-  },
-];
+import TestimonialForm from './TestimonialForm.astro';
+
+const endpoint = import.meta.env.PUBLIC_RESENAS_ENDPOINT;
+const siteToken = import.meta.env.PUBLIC_SITE_TOKEN;
 ---
 
-  <section id="testimonios" class="relative py-14 md:py-20 bg-slate-100 dark:bg-slate-950 overflow-hidden">
+<section id="testimonios" data-endpoint={endpoint} data-token={siteToken} class="relative py-14 md:py-20 bg-slate-100 dark:bg-slate-950 overflow-hidden">
   <div class="absolute inset-0 pointer-events-none opacity-[0.55] dark:opacity-[0.18]" style="background-image: radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.15) 1px, transparent 0); background-size: 32px 32px;"></div>
   <div class="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-cyan-400/6 blur-3xl pointer-events-none"></div>
 
@@ -46,50 +24,65 @@ const testimonios = [
       </p>
     </div>
 
-    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
-      {testimonios.map((t, i) => (
-        <div
-          class={`testimonial-card group relative rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 md:p-8 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)] dark:border-slate-800/60 dark:bg-slate-950/80 opacity-0 translate-y-8`}
-          data-testimonial={i}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="text-cyan-400/30 mb-4">
-            <path fill="currentColor" d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-          </svg>
-
-          <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed italic">
-            "{t.texto}"
-          </p>
-
-          <div class="mt-6 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-sky-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-cyan-500/15">
-              {t.iniciales}
-            </div>
-            <div>
-              <p class="font-semibold text-slate-800 dark:text-slate-100">{t.nombre}</p>
-              <p class="text-xs font-medium uppercase tracking-wider text-cyan-600 dark:text-cyan-400">{t.tipo}</p>
-            </div>
-          </div>
-
-          <div class="absolute top-6 right-6 flex gap-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
+    <div id="testimonios-resumen" class="mt-8 hidden justify-center opacity-0 translate-y-8">
+      <div class="inline-flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-white/90 px-6 py-3 shadow-sm backdrop-blur dark:border-slate-800/60 dark:bg-slate-950/80">
+        <div class="flex items-center gap-1 text-amber-400" id="testimonios-estrellas"></div>
+        <div class="text-sm text-slate-600 dark:text-slate-400">
+          <span id="testimonios-promedio" class="font-bold text-slate-800 dark:text-slate-100"></span>
+          <span id="testimonios-total"></span>
         </div>
-      ))}
+      </div>
+    </div>
+
+    <div id="testimonios-loading" class="mt-14 text-center text-slate-500 dark:text-slate-400">
+      Cargando testimonios…
+    </div>
+
+    <div class="mt-14 flex items-center gap-2 sm:gap-4">
+      <button
+        type="button"
+        id="testimonios-prev"
+        aria-label="Ver testimonios anteriores"
+        class="hidden h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-500 shadow-lg backdrop-blur transition-all duration-300 hover:border-cyan-400 hover:text-cyan-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-500 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:border-cyan-400 dark:hover:text-cyan-300 dark:disabled:hover:border-slate-700 dark:disabled:hover:text-slate-300"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+
+      <div id="testimonios-grid" class="min-w-0 flex-1 grid gap-6 sm:grid-cols-2 lg:grid-cols-2"></div>
+
+      <button
+        type="button"
+        id="testimonios-next"
+        aria-label="Ver testimonios siguientes"
+        class="hidden h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-500 shadow-lg backdrop-blur transition-all duration-300 hover:border-cyan-400 hover:text-cyan-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-500 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:border-cyan-400 dark:hover:text-cyan-300 dark:disabled:hover:border-slate-700 dark:disabled:hover:text-slate-300"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div id="testimonios-vacio" class="mt-14 hidden text-center">
+      <p class="text-slate-500 dark:text-slate-400">Aún no hay testimonios públicos. Sé el primero en compartir tu experiencia.</p>
+    </div>
+
+    <div id="testimonios-error" class="mt-14 hidden text-center text-red-500 dark:text-red-400">
+      No se pudieron cargar los testimonios. Inténtalo de nuevo más tarde.
     </div>
 
     <div class="mt-12 text-center opacity-0 translate-y-8" id="testimonios-cta">
-      <a href="#contacto" class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 hover:text-cyan-500 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors duration-300 group">
-        ¿Tienes un caso similar? Cuéntanos
+      <button
+        type="button"
+        id="abrir-testimonio-modal"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 hover:text-cyan-500 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors duration-300 group"
+      >
+        ¿Nos acompañaste? Comparte tu experiencia
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform duration-300">
           <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
         </svg>
-      </a>
+      </button>
     </div>
   </div>
+
+  <TestimonialForm />
 </section>
 
 <script>
@@ -98,39 +91,242 @@ const testimonios = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '#testimonios',
-      start: 'top 80%',
-      toggleActions: 'play none none none',
-    },
-  });
+  const section = document.getElementById('testimonios');
+  const endpoint = section?.dataset.endpoint;
+  const siteToken = section?.dataset.token;
 
-  tl.to('#testimonios-eyebrow', { opacity: 1, y: 0, duration: 0.4 })
-    .to('#testimonios-title', { opacity: 1, y: 0, duration: 0.5 }, '-=0.2')
-    .to('#testimonios-subtitle', { opacity: 1, y: 0, duration: 0.4 }, '-=0.2');
+  // Se descargan por lotes de BATCH y se muestran de PER_PAGE en PER_PAGE.
+  // Mientras el lote ya esté en memoria, navegar con las flechas NO vuelve a pedir al servidor.
+  const PER_PAGE = 4;
+  const BATCH = 12;
+  let currentPage = 1;
+  let totalPages = 1;
+  let cargados = [];
+  let total = Infinity;
+  let promedio = 0;
+  let lotesCargados = 0;
+  let cargandoLote = false;
 
-  const cards = gsap.utils.toArray<HTMLElement>('.testimonial-card');
-  gsap.to(cards, {
-    opacity: 1,
-    y: 0,
-    duration: 0.4,
-    stagger: 0.08,
-    scrollTrigger: {
-      trigger: '#testimonios',
-      start: 'top 75%',
-      toggleActions: 'play none none none',
-    },
-  });
+  function generarIniciales(nombre) {
+    return nombre
+      .split(' ')
+      .filter((parte) => parte.length > 0)
+      .map((parte) => parte[0].toUpperCase())
+      .slice(0, 2)
+      .join('');
+  }
 
-  gsap.to('#testimonios-cta', {
-    opacity: 1,
-    y: 0,
-    duration: 0.4,
-    scrollTrigger: {
-      trigger: '#testimonios',
-      start: 'top 70%',
-      toggleActions: 'play none none none',
-    },
-  });
+  function formatearFecha(fechaIso) {
+    const fecha = new Date(fechaIso);
+    return fecha.toLocaleDateString('es-MX', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
+  function renderEstrellas(calificacion) {
+    return Array.from({ length: 5 }, (_, i) => {
+      const fill = i < calificacion ? 'currentColor' : 'none';
+      const stroke = i < calificacion ? 'none' : 'currentColor';
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="${fill}" stroke="${stroke}" stroke-width="2" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+    }).join('');
+  }
+
+  function renderTarjeta(testimonio, index) {
+    const iniciales = generarIniciales(testimonio.autor_nombre);
+    const fecha = testimonio.created_at ? formatearFecha(testimonio.created_at) : '';
+    const tipo = testimonio.titulo || 'Cliente';
+
+    return `
+      <div class="testimonial-card group relative rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 md:p-8 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)] dark:border-slate-800/60 dark:bg-slate-950/80 opacity-0 translate-y-8" data-testimonial="${index}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="text-cyan-400/30 mb-4">
+          <path fill="currentColor" d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+
+        <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed italic">
+          "${testimonio.comentario}"
+        </p>
+
+        <div class="mt-6 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-sky-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-cyan-500/15">
+            ${iniciales}
+          </div>
+          <div>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">${testimonio.autor_nombre}</p>
+            <p class="text-xs font-medium uppercase tracking-wider text-cyan-600 dark:text-cyan-400">${tipo}</p>
+            ${fecha ? `<p class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">${fecha}</p>` : ''}
+          </div>
+        </div>
+
+        <div class="absolute top-6 right-6 flex gap-0.5">
+          ${renderEstrellas(testimonio.calificacion)}
+        </div>
+      </div>
+    `;
+  }
+
+  function animarTarjetas() {
+    const cards = gsap.utils.toArray('.testimonial-card');
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: '#testimonios',
+        start: 'top 75%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
+  function animarHeader() {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#testimonios',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    tl.to('#testimonios-eyebrow', { opacity: 1, y: 0, duration: 0.4 })
+      .to('#testimonios-title', { opacity: 1, y: 0, duration: 0.5 }, '-=0.2')
+      .to('#testimonios-subtitle', { opacity: 1, y: 0, duration: 0.4 }, '-=0.2');
+
+    gsap.to('#testimonios-cta', {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      scrollTrigger: {
+        trigger: '#testimonios',
+        start: 'top 65%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
+  function actualizarControles() {
+    const prev = document.getElementById('testimonios-prev');
+    const next = document.getElementById('testimonios-next');
+    if (!prev || !next) return;
+
+    const mostrar = totalPages > 1;
+    [prev, next].forEach((btn) => {
+      btn.classList.toggle('hidden', !mostrar);
+      btn.classList.toggle('flex', mostrar);
+    });
+
+    prev.disabled = currentPage <= 1;
+    next.disabled = currentPage >= totalPages;
+  }
+
+  // Descarga el siguiente lote (BATCH testimonios) y lo acumula en memoria.
+  // Devuelve cuántos testimonios nuevos llegaron.
+  async function cargarLote() {
+    if (cargandoLote || !endpoint || !siteToken) return 0;
+
+    cargandoLote = true;
+    try {
+      const paginaLote = lotesCargados + 1;
+      const url = `${endpoint}?site_token=${encodeURIComponent(siteToken)}&page=${paginaLote}&limit=${BATCH}`;
+      const response = await fetch(url);
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'Error cargando testimonios');
+      }
+
+      const data = result.data || {};
+      const nuevas = data.reseñas || [];
+
+      cargados = cargados.concat(nuevas);
+      lotesCargados += 1;
+
+      if (typeof data.total === 'number') total = data.total;
+      if (typeof data.promedio === 'number') promedio = data.promedio;
+      // Si el servidor no informa el total y el lote vino incompleto, ya no hay más.
+      if (nuevas.length < BATCH && !Number.isFinite(total)) total = cargados.length;
+
+      return nuevas.length;
+    } finally {
+      cargandoLote = false;
+    }
+  }
+
+  async function renderPagina() {
+    const grid = document.getElementById('testimonios-grid');
+    const loading = document.getElementById('testimonios-loading');
+    const vacio = document.getElementById('testimonios-vacio');
+    const error = document.getElementById('testimonios-error');
+    const resumen = document.getElementById('testimonios-resumen');
+
+    if (!endpoint || !siteToken) {
+      loading?.classList.add('hidden');
+      error.textContent = 'Error de configuración: faltan las variables de entorno del sistema de reseñas.';
+      error?.classList.remove('hidden');
+      return;
+    }
+
+    // ¿La página pedida ya está en memoria o hay que bajar otro lote?
+    const necesarios = currentPage * PER_PAGE;
+    if (cargados.length < necesarios && cargados.length < total) {
+      loading?.classList.remove('hidden');
+      error?.classList.add('hidden');
+    }
+
+    try {
+      while (cargados.length < necesarios && cargados.length < total) {
+        const nuevas = await cargarLote();
+        if (nuevas === 0) break;
+      }
+    } catch (err) {
+      console.error('Error cargando testimonios:', err);
+      loading?.classList.add('hidden');
+      error?.classList.remove('hidden');
+      return;
+    }
+
+    loading?.classList.add('hidden');
+    error?.classList.add('hidden');
+
+    const totalConocido = Number.isFinite(total) ? total : cargados.length;
+    totalPages = Math.max(1, Math.ceil(totalConocido / PER_PAGE));
+
+    const inicio = (currentPage - 1) * PER_PAGE;
+    const visibles = cargados.slice(inicio, inicio + PER_PAGE);
+
+    if (cargados.length === 0) {
+      grid.innerHTML = '';
+      vacio?.classList.remove('hidden');
+      resumen?.classList.add('hidden');
+      actualizarControles();
+      return;
+    }
+
+    vacio?.classList.add('hidden');
+    grid.innerHTML = visibles.map((t, i) => renderTarjeta(t, i)).join('');
+
+    resumen?.classList.remove('hidden');
+    resumen?.classList.add('flex');
+    document.getElementById('testimonios-promedio').textContent = `${promedio.toFixed(1)} / 5`;
+    document.getElementById('testimonios-total').textContent = `· ${totalConocido} reseña${totalConocido !== 1 ? 's' : ''}`;
+    document.getElementById('testimonios-estrellas').innerHTML = renderEstrellas(Math.round(promedio));
+
+    animarTarjetas();
+    actualizarControles();
+  }
+
+  async function irAPagina(pagina) {
+    const destino = Math.min(Math.max(pagina, 1), totalPages);
+    if (destino === currentPage) return;
+    currentPage = destino;
+    await renderPagina();
+  }
+
+  document.getElementById('testimonios-prev')?.addEventListener('click', () => irAPagina(currentPage - 1));
+  document.getElementById('testimonios-next')?.addEventListener('click', () => irAPagina(currentPage + 1));
+
+  animarHeader();
+  renderPagina();
 </script>

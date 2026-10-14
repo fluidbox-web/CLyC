@@ -3,3 +3,8 @@ dist
 .astro
 *.log
 .DS_Store
+
+# Variables de entorno (no subir secretos)
+.env
+.env.local
+.env.*.local

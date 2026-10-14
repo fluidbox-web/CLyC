@@ -1,0 +1,453 @@
+---
+const tiposAsunto = [
+  'Asuntos Familiares',
+  'Asuntos Penales',
+  'Asuntos Civiles',
+  'Amparos',
+  'Mercantil',
+  'Laboral',
+  'Contratos',
+  'Remates Inmobiliarios',
+  'Trámites Migratorios',
+  'Pasaportes',
+  'CONDUSEF y PROFECO',
+  'Contabilidad y Fiscal',
+  'Asistencia a Empresas',
+];
+---
+
+<dialog
+  id="testimonio-modal"
+  data-endpoint={import.meta.env.PUBLIC_RESENAS_ENDPOINT}
+  data-token={import.meta.env.PUBLIC_SITE_TOKEN}
+  class="z-50 m-auto max-w-2xl w-[calc(100%-2rem)] rounded-2xl border border-slate-200 bg-white p-0 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm open:animate-[modal-in_0.2s_ease-out] dark:border-slate-800 dark:bg-slate-950"
+>
+  <div class="max-h-[85vh] overflow-y-auto p-6 md:p-8">
+
+    <!-- Vista: formulario -->
+    <div id="testimonio-view-form">
+      <div class="mb-6 flex items-start justify-between gap-4">
+        <div>
+          <h3 class="font-serif text-2xl font-semibold text-slate-800 dark:text-slate-100">
+            Comparte tu experiencia
+          </h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            Tu testimonio será revisado antes de publicarse.
+          </p>
+        </div>
+        <button
+          type="button"
+          id="cerrar-testimonio-modal"
+          aria-label="Cerrar"
+          class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-900 dark:hover:text-slate-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="testimonio-form" class="space-y-5">
+        <div class="space-y-1.5">
+          <label for="testimonio-nombre" class="block text-sm font-medium text-slate-600 dark:text-slate-400">Nombre completo</label>
+          <input
+            type="text"
+            id="testimonio-nombre"
+            name="nombre"
+            required
+            minlength="2"
+            placeholder="Tu nombre"
+            class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder-slate-400 transition-all focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/30 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100 dark:placeholder-slate-500"
+          />
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="testimonio-email" class="block text-sm font-medium text-slate-600 dark:text-slate-400">Correo electrónico <span class="font-normal text-slate-400">(opcional)</span></label>
+          <input
+            type="email"
+            id="testimonio-email"
+            name="email"
+            placeholder="tu@email.com"
+            class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder-slate-400 transition-all focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/30 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100 dark:placeholder-slate-500"
+          />
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="testimonio-asunto" class="block text-sm font-medium text-slate-600 dark:text-slate-400">Tipo de Asunto</label>
+          <div class="relative">
+            <select
+              id="testimonio-asunto"
+              name="tipo"
+              required
+              class="w-full appearance-none rounded-lg border border-slate-300 bg-white px-4 py-3 pr-10 text-slate-800 transition-all focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/30 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100"
+            >
+              <option value="" disabled selected>Selecciona un tipo de asunto</option>
+              {tiposAsunto.map((tipo) => (
+                <option value={tipo}>{tipo}</option>
+              ))}
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">Calificación</label>
+          <div class="flex items-center gap-1" id="testimonio-estrellas">
+            {Array.from({ length: 5 }, (_, i) => (
+              <button
+                type="button"
+                data-value={i + 1}
+                class="testimonio-estrella text-slate-300 transition-colors hover:text-amber-400"
+                aria-label={`${i + 1} estrellas`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </button>
+            ))}
+          </div>
+          <input type="hidden" name="calificacion" id="testimonio-calificacion" required />
+          <p id="testimonio-calificacion-error" class="hidden text-sm text-red-500">Selecciona una calificación.</p>
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="testimonio-mensaje" class="block text-sm font-medium text-slate-600 dark:text-slate-400">Tu testimonio</label>
+          <textarea
+            id="testimonio-mensaje"
+            name="testimonio"
+            required
+            rows="4"
+            minlength="10"
+            maxlength="1000"
+            placeholder="Cuéntanos cómo fue tu experiencia con nosotras..."
+            class="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder-slate-400 transition-all focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/30 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100 dark:placeholder-slate-500"
+          ></textarea>
+          <p class="text-xs text-slate-400 dark:text-slate-500">Mínimo 10 caracteres. Máximo 1000.</p>
+        </div>
+
+        <button type="submit" id="testimonio-submit" class="btn-primary w-full text-center">
+          Enviar testimonio
+        </button>
+
+        <div id="testimonio-feedback" class="hidden rounded-lg px-4 py-3 text-sm"></div>
+      </form>
+    </div>
+
+    <!-- Vista: enviando -->
+    <div id="testimonio-view-loading" class="hidden flex-col items-center justify-center gap-4 py-16 text-center">
+      <div class="h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-cyan-500 dark:border-slate-700 dark:border-t-cyan-400"></div>
+      <p class="text-base font-semibold text-slate-700 dark:text-slate-200">Enviando…</p>
+      <p class="text-sm text-slate-500 dark:text-slate-400">Estamos registrando tu testimonio.</p>
+    </div>
+
+    <!-- Vista: éxito -->
+    <div id="testimonio-view-success" class="hidden flex-col items-center justify-center gap-4 py-12 text-center">
+      <div class="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+      </div>
+      <h3 class="font-serif text-2xl font-semibold text-slate-800 dark:text-slate-100">¡Gracias!</h3>
+      <p id="testimonio-success-message" class="max-w-md text-sm text-slate-600 dark:text-slate-400"></p>
+      <button type="button" id="testimonio-ok" class="btn-primary mt-2 !px-10">OK</button>
+    </div>
+
+  </div>
+</dialog>
+
+<style>
+  @keyframes modal-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  #testimonio-modal::backdrop {
+    background-color: rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  #testimonio-modal[open] {
+    display: block;
+  }
+
+  .testimonio-estrella.activa {
+    color: #fbbf24;
+  }
+</style>
+
+<script>
+  const modal = document.getElementById('testimonio-modal');
+  const endpoint = modal?.dataset.endpoint;
+  const siteToken = modal?.dataset.token;
+
+  const openButton = document.getElementById('abrir-testimonio-modal');
+  const closeButton = document.getElementById('cerrar-testimonio-modal');
+  const form = document.getElementById('testimonio-form');
+  const feedback = document.getElementById('testimonio-feedback');
+  const estrellas = document.querySelectorAll('.testimonio-estrella');
+  const calificacionInput = document.getElementById('testimonio-calificacion');
+  const calificacionError = document.getElementById('testimonio-calificacion-error');
+
+  const nombreInput = document.getElementById('testimonio-nombre');
+  const emailInput = document.getElementById('testimonio-email');
+  const tipoSelect = document.getElementById('testimonio-asunto');
+  const mensajeInput = document.getElementById('testimonio-mensaje');
+
+  const viewForm = document.getElementById('testimonio-view-form');
+  const viewLoading = document.getElementById('testimonio-view-loading');
+  const viewSuccess = document.getElementById('testimonio-view-success');
+  const successMessage = document.getElementById('testimonio-success-message');
+  const okButton = document.getElementById('testimonio-ok');
+
+  const DRAFT_KEY = 'clyc:testimonio-borrador';
+  const VISTAS = { form: viewForm, loading: viewLoading, success: viewSuccess };
+  const VISTAS_FLEX = [viewLoading, viewSuccess];
+
+  let calificacionSeleccionada = 0;
+  let enviando = false;
+
+  function mostrarVista(nombre) {
+    Object.entries(VISTAS).forEach(([clave, el]) => {
+      if (!el) return;
+      el.classList.toggle('hidden', clave !== nombre);
+    });
+    // Las vistas loading/success se centran con flex; el formulario no.
+    VISTAS_FLEX.forEach((el) => {
+      if (el) el.classList.toggle('flex', el === VISTAS[nombre]);
+    });
+  }
+
+  function actualizarEstrellas(valor) {
+    estrellas.forEach((btn, index) => {
+      btn.classList.toggle('activa', index < valor);
+    });
+  }
+
+  // --- Borrador (localStorage) ---
+  function leerBorrador() {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function guardarBorrador() {
+    try {
+      localStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({
+          nombre: nombreInput?.value ?? '',
+          email: emailInput?.value ?? '',
+          tipo: tipoSelect?.value ?? '',
+          testimonio: mensajeInput?.value ?? '',
+          calificacion: calificacionSeleccionada || 0,
+        }),
+      );
+    } catch {
+      /* localStorage no disponible */
+    }
+  }
+
+  function limpiarBorrador() {
+    try {
+      localStorage.removeItem(DRAFT_KEY);
+    } catch {
+      /* localStorage no disponible */
+    }
+  }
+
+  function aplicarBorrador() {
+    const borrador = leerBorrador();
+    if (!borrador) return;
+
+    if (nombreInput) nombreInput.value = borrador.nombre || '';
+    if (emailInput) emailInput.value = borrador.email || '';
+    if (tipoSelect) tipoSelect.value = borrador.tipo || '';
+    if (mensajeInput) mensajeInput.value = borrador.testimonio || '';
+
+    calificacionSeleccionada = Number(borrador.calificacion) || 0;
+    if (calificacionInput) calificacionInput.value = calificacionSeleccionada || '';
+    actualizarEstrellas(calificacionSeleccionada);
+  }
+
+  function resetearFormulario() {
+    form?.reset();
+    calificacionSeleccionada = 0;
+    if (calificacionInput) calificacionInput.value = '';
+    actualizarEstrellas(0);
+    calificacionError?.classList.add('hidden');
+    feedback?.classList.add('hidden');
+  }
+
+  // --- Estrellas ---
+  estrellas.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      calificacionSeleccionada = Number(btn.dataset.value);
+      if (calificacionInput) calificacionInput.value = calificacionSeleccionada;
+      actualizarEstrellas(calificacionSeleccionada);
+      calificacionError?.classList.add('hidden');
+      guardarBorrador();
+    });
+  });
+
+  // Guardar el borrador mientras el usuario escribe
+  form?.addEventListener('input', guardarBorrador);
+  form?.addEventListener('change', guardarBorrador);
+
+  // --- Modal ---
+  function openModal(event) {
+    event?.preventDefault();
+    if (!modal) return;
+    aplicarBorrador();
+    mostrarVista('form');
+    feedback?.classList.add('hidden');
+    modal.showModal();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal || enviando) return;
+    modal.close();
+    document.body.style.overflow = '';
+    mostrarVista('form');
+    feedback?.classList.add('hidden');
+  }
+
+  openButton?.addEventListener('click', openModal);
+  closeButton?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (event) => {
+    if (enviando) return;
+    const rect = modal.getBoundingClientRect();
+    const clickedOutside =
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom;
+    if (clickedOutside) closeModal();
+  });
+
+  modal?.addEventListener('close', () => {
+    document.body.style.overflow = '';
+  });
+
+  // Evita cerrar con Escape mientras se está enviando
+  modal?.addEventListener('cancel', (event) => {
+    if (enviando) event.preventDefault();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal?.open) {
+      if (enviando) {
+        event.preventDefault();
+        return;
+      }
+      closeModal();
+    }
+  });
+
+  // Botón OK de la vista de éxito: limpia el borrador y cierra
+  okButton?.addEventListener('click', () => {
+    limpiarBorrador();
+    resetearFormulario();
+    mostrarVista('form');
+    closeModal();
+  });
+
+  function showFeedback(message, type) {
+    if (!feedback) return;
+    feedback.textContent = message;
+    feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-red-100', 'text-red-800', 'dark:bg-emerald-900/30', 'dark:text-emerald-200', 'dark:bg-red-900/30', 'dark:text-red-200');
+
+    if (type === 'success') {
+      feedback.classList.add('bg-emerald-100', 'text-emerald-800', 'dark:bg-emerald-900/30', 'dark:text-emerald-200');
+    } else {
+      feedback.classList.add('bg-red-100', 'text-red-800', 'dark:bg-red-900/30', 'dark:text-red-200');
+    }
+  }
+
+  // --- Envío ---
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (enviando) return;
+
+    if (!endpoint || !siteToken) {
+      showFeedback('Error de configuración. Por favor contacta al administrador del sitio.', 'error');
+      return;
+    }
+
+    if (!calificacionSeleccionada) {
+      calificacionError?.classList.remove('hidden');
+      return;
+    }
+
+    const data = new FormData(form);
+    const payload = {
+      site_token: siteToken,
+      autor_nombre: String(data.get('nombre') ?? '').trim(),
+      autor_email: String(data.get('email') ?? '').trim() || null,
+      titulo: String(data.get('tipo') ?? '').trim(),
+      calificacion: calificacionSeleccionada,
+      comentario: String(data.get('testimonio') ?? '').trim(),
+    };
+
+    enviando = true;
+    feedback?.classList.add('hidden');
+    mostrarVista('loading');
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || `Error ${response.status}`);
+      }
+
+      const publicado = result.data?.estado !== 'pendiente';
+      const mensajeBase =
+        result.data?.mensaje ||
+        result.data?.message ||
+        (publicado
+          ? 'Tu testimonio ha sido publicado.'
+          : 'Tu testimonio ha sido recibido y será revisado antes de publicarse.');
+
+      const mensaje = publicado
+        ? `${mensajeBase} Es posible que debas refrescar la página para ver tu comentario.`
+        : mensajeBase;
+
+      if (successMessage) successMessage.textContent = mensaje;
+
+      // Ya enviado: el borrador deja de ser útil
+      limpiarBorrador();
+      resetearFormulario();
+      mostrarVista('success');
+      okButton?.focus();
+    } catch (error) {
+      console.error('Error enviando testimonio:', error);
+      mostrarVista('form');
+      showFeedback(error.message || 'No se pudo enviar el testimonio. Inténtalo de nuevo más tarde.', 'error');
+    } finally {
+      enviando = false;
+    }
+  });
+
+  // Al cargar la página: restaurar borrador (si existe) y partir del formulario
+  aplicarBorrador();
+  mostrarVista('form');
+</script>
