@@ -82,6 +82,31 @@ const siteToken = import.meta.env.PUBLIC_SITE_TOKEN;
     </div>
   </div>
 
+  <dialog
+    id="testimonio-detalle"
+    class="z-50 m-auto w-[calc(100%-2rem)] max-w-xl rounded-2xl border border-slate-200 bg-white p-0 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm dark:border-slate-800 dark:bg-slate-950"
+  >
+    <div class="max-h-[85vh] overflow-y-auto p-6 md:p-8">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p id="detalle-nombre" class="font-semibold text-slate-800 dark:text-slate-100"></p>
+          <p id="detalle-tipo" class="text-xs font-medium uppercase tracking-wider text-cyan-600 dark:text-cyan-400"></p>
+          <p id="detalle-fecha" class="mt-0.5 text-[10px] text-slate-400 dark:text-slate-500"></p>
+        </div>
+        <button
+          type="button"
+          id="cerrar-detalle"
+          aria-label="Cerrar"
+          class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-900 dark:hover:text-slate-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div id="detalle-estrellas" class="mt-4 flex gap-0.5 text-amber-400"></div>
+      <p id="detalle-comentario" class="mt-4 whitespace-pre-line text-base leading-relaxed italic text-slate-600 dark:text-slate-300"></p>
+    </div>
+  </dialog>
+
   <TestimonialForm />
 </section>
 
@@ -94,6 +119,9 @@ const siteToken = import.meta.env.PUBLIC_SITE_TOKEN;
   const section = document.getElementById('testimonios');
   const endpoint = section?.dataset.endpoint;
   const siteToken = section?.dataset.token;
+
+  const detalleDialog = document.getElementById('testimonio-detalle');
+  let testimoniosVisibles = [];
 
   // Se descargan por lotes de BATCH y se muestran de PER_PAGE en PER_PAGE.
   // Mientras el lote ya esté en memoria, navegar con las flechas NO vuelve a pedir al servidor.
@@ -133,10 +161,21 @@ const siteToken = import.meta.env.PUBLIC_SITE_TOKEN;
     }).join('');
   }
 
+  function escaparHtml(valor) {
+    return String(valor ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function renderTarjeta(testimonio, index) {
-    const iniciales = generarIniciales(testimonio.autor_nombre);
+    const iniciales = escaparHtml(generarIniciales(testimonio.autor_nombre || ''));
     const fecha = testimonio.created_at ? formatearFecha(testimonio.created_at) : '';
-    const tipo = testimonio.titulo || 'Cliente';
+    const tipo = escaparHtml(testimonio.titulo || 'Cliente');
+    const nombre = escaparHtml(testimonio.autor_nombre || '');
+    const comentario = escaparHtml(testimonio.comentario || '');
 
     return `
       <div class="testimonial-card group relative rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 md:p-8 shadow-[0_20px_50px_rgba(15,23,42,0.06)] backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)] dark:border-slate-800/60 dark:bg-slate-950/80 opacity-0 translate-y-8" data-testimonial="${index}">
@@ -144,16 +183,21 @@ const siteToken = import.meta.env.PUBLIC_SITE_TOKEN;
           <path fill="currentColor" d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
         </svg>
 
-        <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed italic">
-          "${testimonio.comentario}"
+        <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed italic line-clamp-4" data-comentario>
+          "${comentario}"
         </p>
+
+        <span class="mt-2 hidden inline-flex items-center gap-1 text-xs font-semibold text-cyan-600 dark:text-cyan-400" data-ver-mas>
+          Ver más
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </span>
 
         <div class="mt-6 flex items-center gap-4">
           <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-sky-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-cyan-500/15">
             ${iniciales}
           </div>
           <div>
-            <p class="font-semibold text-slate-800 dark:text-slate-100">${testimonio.autor_nombre}</p>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">${nombre}</p>
             <p class="text-xs font-medium uppercase tracking-wider text-cyan-600 dark:text-cyan-400">${tipo}</p>
             ${fecha ? `<p class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">${fecha}</p>` : ''}
           </div>
@@ -304,8 +348,10 @@ const siteToken = import.meta.env.PUBLIC_SITE_TOKEN;
       return;
     }
 
+    testimoniosVisibles = visibles;
     vacio?.classList.add('hidden');
     grid.innerHTML = visibles.map((t, i) => renderTarjeta(t, i)).join('');
+    requestAnimationFrame(prepararComentarios);
 
     resumen?.classList.remove('hidden');
     resumen?.classList.add('flex');
@@ -326,6 +372,64 @@ const siteToken = import.meta.env.PUBLIC_SITE_TOKEN;
 
   document.getElementById('testimonios-prev')?.addEventListener('click', () => irAPagina(currentPage - 1));
   document.getElementById('testimonios-next')?.addEventListener('click', () => irAPagina(currentPage + 1));
+
+  // --- Comentarios largos: elipsis (line-clamp) + modal de detalle ---
+  function prepararComentarios() {
+    const grid = document.getElementById('testimonios-grid');
+    if (!grid) return;
+    grid.querySelectorAll('[data-comentario]').forEach((el) => {
+      const card = el.closest('.testimonial-card');
+      if (!card) return;
+      const recortado = el.scrollHeight > el.clientHeight + 2;
+      card.classList.toggle('cursor-pointer', recortado);
+      if (recortado) card.setAttribute('data-expandible', '1');
+      else card.removeAttribute('data-expandible');
+      const hint = card.querySelector('[data-ver-mas]');
+      if (hint) hint.classList.toggle('hidden', !recortado);
+    });
+  }
+
+  function abrirDetalle(testimonio) {
+    if (!detalleDialog || !testimonio) return;
+    document.getElementById('detalle-nombre').textContent = testimonio.autor_nombre || '';
+    document.getElementById('detalle-tipo').textContent = testimonio.titulo || 'Cliente';
+    document.getElementById('detalle-fecha').textContent = testimonio.created_at ? formatearFecha(testimonio.created_at) : '';
+    document.getElementById('detalle-estrellas').innerHTML = renderEstrellas(testimonio.calificacion);
+    document.getElementById('detalle-comentario').textContent = testimonio.comentario || '';
+    detalleDialog.showModal();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarDetalle() {
+    if (detalleDialog?.open) detalleDialog.close();
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('testimonios-grid')?.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    const card = target.closest('[data-expandible]');
+    if (!card) return;
+    const testimonio = testimoniosVisibles[Number(card.getAttribute('data-testimonial'))];
+    abrirDetalle(testimonio);
+  });
+
+  document.getElementById('cerrar-detalle')?.addEventListener('click', cerrarDetalle);
+
+  detalleDialog?.addEventListener('click', (event) => {
+    const rect = detalleDialog.getBoundingClientRect();
+    const fuera =
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom;
+    if (fuera) cerrarDetalle();
+  });
+
+  detalleDialog?.addEventListener('close', () => {
+    document.body.style.overflow = '';
+  });
+
+  window.addEventListener('resize', () => requestAnimationFrame(prepararComentarios));
 
   animarHeader();
   renderPagina();
