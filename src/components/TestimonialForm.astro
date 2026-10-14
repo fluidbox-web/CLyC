@@ -94,7 +94,7 @@ const tiposAsunto = [
         </div>
 
         <div class="space-y-2">
-          <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">Calificación</label>
+          <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">Calificación <span class="text-red-500">*</span></label>
           <div class="flex items-center gap-1" id="testimonio-estrellas">
             {Array.from({ length: 5 }, (_, i) => (
               <button
@@ -126,6 +126,12 @@ const tiposAsunto = [
             class="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder-slate-400 transition-all focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/30 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100 dark:placeholder-slate-500"
           ></textarea>
           <p class="text-xs text-slate-400 dark:text-slate-500">Mínimo 10 caracteres. Máximo 1000.</p>
+        </div>
+
+        <!-- Honeypot anti-bots: invisible para las personas; los bots suelen rellenarlo -->
+        <div aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+          <label for="testimonio-web">No rellenes este campo</label>
+          <input type="text" id="testimonio-web" name="website" tabindex="-1" autocomplete="off" />
         </div>
 
         <button type="submit" id="testimonio-submit" class="btn-primary w-full text-center">
@@ -196,6 +202,7 @@ const tiposAsunto = [
   const estrellas = document.querySelectorAll('.testimonio-estrella');
   const calificacionInput = document.getElementById('testimonio-calificacion');
   const calificacionError = document.getElementById('testimonio-calificacion-error');
+  const estrellasContainer = document.getElementById('testimonio-estrellas');
 
   const nombreInput = document.getElementById('testimonio-nombre');
   const emailInput = document.getElementById('testimonio-email');
@@ -230,6 +237,15 @@ const tiposAsunto = [
     estrellas.forEach((btn, index) => {
       btn.classList.toggle('activa', index < valor);
     });
+  }
+
+  // Resalta la calificación como inválida (obligatoria) o limpia el estado
+  function marcarCalificacionInvalida(invalida) {
+    calificacionError?.classList.toggle('hidden', !invalida);
+    if (!estrellasContainer) return;
+    estrellasContainer.classList.toggle('ring-1', invalida);
+    estrellasContainer.classList.toggle('ring-red-400', invalida);
+    estrellasContainer.classList.toggle('rounded-lg', invalida);
   }
 
   // --- Borrador (localStorage) ---
@@ -286,7 +302,7 @@ const tiposAsunto = [
     calificacionSeleccionada = 0;
     if (calificacionInput) calificacionInput.value = '';
     actualizarEstrellas(0);
-    calificacionError?.classList.add('hidden');
+    marcarCalificacionInvalida(false);
     feedback?.classList.add('hidden');
   }
 
@@ -296,7 +312,7 @@ const tiposAsunto = [
       calificacionSeleccionada = Number(btn.dataset.value);
       if (calificacionInput) calificacionInput.value = calificacionSeleccionada;
       actualizarEstrellas(calificacionSeleccionada);
-      calificacionError?.classList.add('hidden');
+      marcarCalificacionInvalida(false);
       guardarBorrador();
     });
   });
@@ -383,15 +399,30 @@ const tiposAsunto = [
 
     if (enviando) return;
 
+    // Honeypot: si el campo oculto trae algo, es un bot. Fingimos éxito y no enviamos nada.
+    const honeypot = document.getElementById('testimonio-web');
+    if (honeypot && honeypot.value.trim() !== '') {
+      limpiarBorrador();
+      resetearFormulario();
+      if (successMessage) {
+        successMessage.textContent = '¡Gracias! Tu testimonio ha sido recibido y será revisado antes de publicarse.';
+      }
+      mostrarVista('success');
+      okButton?.focus();
+      return;
+    }
+
     if (!endpoint || !siteToken) {
       showFeedback('Error de configuración. Por favor contacta al administrador del sitio.', 'error');
       return;
     }
 
     if (!calificacionSeleccionada) {
-      calificacionError?.classList.remove('hidden');
+      marcarCalificacionInvalida(true);
+      estrellas[0]?.focus();
       return;
     }
+    marcarCalificacionInvalida(false);
 
     const data = new FormData(form);
     const payload = {
@@ -401,6 +432,7 @@ const tiposAsunto = [
       titulo: String(data.get('tipo') ?? '').trim(),
       calificacion: calificacionSeleccionada,
       comentario: String(data.get('testimonio') ?? '').trim(),
+      website: String(data.get('website') ?? '').trim(),
     };
 
     enviando = true;
